@@ -11,7 +11,7 @@
                     hama yang ditemukan. AI kami akan mengidentifikasi ancaman dan memberikan rekomendasi penanganan
                     secara instan.</p>
             </div>
-            <div id="upload-box" class="bg-surface-container-lowest rounded-xl border-2 border-dashed border-primary p-lg flex flex-col items-center justify-center text-center gap-md hover:bg-surface-container-low transition-colors duration-300 cursor-pointer group shadow-[0_4px_16px_rgba(27,94,32,0.04)] relative">
+            <div id="upload-box" class="bg-surface-container-lowest rounded-2xl border-2 border-dashed border-primary/70 p-5 sm:p-8 lg:p-10 flex flex-col items-center justify-center text-center gap-4 sm:gap-5 hover:bg-surface-container-low transition-colors duration-300 cursor-pointer group shadow-[0_4px_16px_rgba(27,94,32,0.04)] relative">
                 <input type="file" id="foto-input" accept="image/jpeg, image/png" class="hidden">
                 
                 <div class="mb-2 w-full max-w-sm" onclick="event.stopPropagation()">
@@ -36,7 +36,7 @@
                     <p class="font-h3 text-h3 text-primary mb-xs">Tarik &amp; Lepas Foto Di Sini</p>
                     <p class="font-body text-body text-on-surface-variant">atau</p>
                 </div>
-                <button id="btn-upload" class="bg-primary text-on-primary px-8 py-3 rounded-full font-small-label text-small-label hover:bg-surface-tint transition-colors duration-200 active:scale-95 shadow-[0_4px_12px_rgba(27,94,32,0.15)] flex items-center gap-2">
+                <button id="btn-upload" type="button" class="w-full sm:w-auto justify-center bg-primary text-on-primary px-6 sm:px-8 py-3 rounded-full font-small-label text-small-label hover:bg-surface-tint transition-colors duration-200 active:scale-95 shadow-[0_4px_12px_rgba(27,94,32,0.15)] flex items-center gap-2">
                     <span class="material-symbols-outlined">upload</span> Ambil Foto / Upload Gambar
                 </button>
                 <p class="font-small-label text-small-label text-outline mt-xs">Mendukung format JPG, PNG. Maksimal

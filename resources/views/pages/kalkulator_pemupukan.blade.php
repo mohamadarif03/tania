@@ -3,22 +3,27 @@
 @section('content')
 <main class="flex-grow w-full max-w-[1200px] mx-auto px-4 xl:px-6 py-6 md:py-8 flex flex-col gap-8">
 
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <h1 class="text-2xl md:text-3xl font-bold text-on-surface">Kalkulator Pemupukan</h1>
-        <button class="bg-primary text-on-primary px-4 py-2 rounded-xl text-sm font-medium hover:bg-opacity-90 shadow-sm transition">
-            Pengaturan
-        </button>
     </div>
 
     <!-- 1. Bagian Pilih Lahan -->
     <section>
         <h2 class="text-lg font-semibold text-on-surface mb-4">1. Pilih Lahan</h2>
         @if($lahans->isEmpty())
-            <div class="bg-surface rounded-2xl p-6 text-center shadow-sm border border-outline-variant/30 text-on-surface-variant">
-                Anda belum memiliki lahan aktif. Silakan tambahkan lahan terlebih dahulu.
+            <div class="bg-surface rounded-2xl p-8 text-center shadow-sm border border-outline-variant/30 flex flex-col items-center">
+                <div class="w-14 h-14 rounded-2xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mb-3">
+                    <span class="material-symbols-outlined text-3xl">calculate</span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">Belum Ada Lahan Aktif</h3>
+                <p class="text-sm text-on-surface-variant max-w-md mb-5">Tambahkan lahan pertanian terlebih dahulu untuk menghitung dosis dan jadwal pemupukan otomatis sesuai luas lahan.</p>
+                <a href="{{ route('add_land') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-xl text-xs sm:text-sm font-semibold shadow-sm hover:opacity-90 transition">
+                    <span class="material-symbols-outlined text-[18px]">add</span>
+                    <span>Tambah Lahan Pertama</span>
+                </a>
             </div>
         @else
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="lahan-list">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="lahan-list">
                 @foreach($lahans as $index => $lahan)
                 <div class="lahan-card bg-surface border {{ $index === 0 ? 'border-primary border-2 active-lahan' : 'border-outline-variant/50' }} rounded-2xl p-4 shadow-sm cursor-pointer relative overflow-hidden transition-all" data-id="{{ $lahan->id }}">
                     <div class="active-badge absolute top-0 right-0 bg-primary text-on-primary text-[10px] font-bold px-3 py-1 rounded-bl-lg {{ $index === 0 ? '' : 'hidden' }}">DIPILIH</div>
@@ -35,7 +40,7 @@
             </div>
 
             <div class="mt-6 flex justify-end">
-                <button id="btn-generate" class="bg-primary text-on-primary px-6 py-3 rounded-xl font-bold shadow-md hover:bg-opacity-90 transition-all flex items-center gap-2">
+                <button id="btn-generate" class="w-full sm:w-auto justify-center bg-primary text-on-primary px-6 py-3 rounded-xl font-bold shadow-md hover:bg-opacity-90 transition-all flex items-center gap-2">
                     <span class="material-symbols-outlined" id="generate-icon">psychiatry</span>
                     <span id="generate-text">Generate Kalkulator Pemupukan</span>
                 </button>
@@ -52,17 +57,19 @@
     <!-- Output Container -->
     <div id="output-container" class="hidden flex-col gap-8">
         <!-- 2. Jadwal Pemupukan (Timeline) -->
-        <section class="bg-surface rounded-2xl p-6 shadow-sm border border-outline-variant/30">
+        <section class="bg-surface rounded-2xl p-5 sm:p-6 shadow-sm border border-outline-variant/30 overflow-hidden">
             <h2 class="text-lg font-semibold text-on-surface mb-6">2. Jadwal Pemupukan (Fase Tanaman)</h2>
             
-            <div class="relative w-full max-w-3xl mx-auto py-4">
-                <!-- Line Base -->
-                <div class="absolute top-1/2 left-0 w-full h-1.5 bg-surface-variant -translate-y-1/2 rounded-full"></div>
-                <!-- Active Line -->
-                <div id="timeline-active-line" class="absolute top-1/2 left-0 w-0 h-1.5 bg-primary -translate-y-1/2 rounded-full transition-all duration-1000"></div>
+            <div class="overflow-x-auto pb-2">
+                <div class="relative min-w-[380px] w-full max-w-3xl mx-auto pt-4 pb-2 px-3">
+                    <!-- Line Base -->
+                    <div class="absolute top-7 left-6 right-6 h-1.5 bg-surface-variant rounded-full"></div>
+                    <!-- Active Line -->
+                    <div id="timeline-active-line" class="absolute top-7 left-6 w-0 h-1.5 bg-primary rounded-full transition-all duration-1000"></div>
 
-                <div class="relative flex justify-between" id="timeline-points">
-                    <!-- Points will be injected here via JS -->
+                    <div class="relative flex justify-between gap-2" id="timeline-points">
+                        <!-- Points will be injected here via JS -->
+                    </div>
                 </div>
             </div>
         </section>

@@ -19,7 +19,10 @@ class PlantingCalendarController extends Controller
         $lahan_id = $request->query('lahan_id');
 
         if ($lahans->isEmpty()) {
-            return redirect()->route('add_land')->with('error', 'Silakan tambahkan lahan terlebih dahulu.');
+            $selectedLahan = null;
+            $kalenderData = null;
+            $kalenderFresh = false;
+            return view('pages.calender_planning', compact('lahans', 'selectedLahan', 'kalenderData', 'kalenderFresh'));
         }
 
         $selectedLahan = $lahan_id ? $lahans->firstWhere('id', $lahan_id) : $lahans->first();

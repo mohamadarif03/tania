@@ -52,68 +52,95 @@
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="flex items-center justify-between px-6 sm:px-10 lg:px-16 py-5 bg-white relative z-50">
-        <a href="/" class="flex items-center">
-            <img src="{{ asset('assets/logo panjang-1.png') }}" alt="AgriCare Logo" class="h-12 w-auto">
-        </a>
-        <div class="hidden lg:flex space-x-10 text-[12px] font-bold text-brand-brown tracking-wider">
-            <a href="#fitur" class="hover:text-brand-orange transition-colors">FITUR</a>
-            <a href="#testimoni" class="hover:text-brand-orange transition-colors">TESTIMONI</a>
-            <a href="#berita" class="hover:text-brand-orange transition-colors">BERITA</a>
-            <a href="#faq" class="hover:text-brand-orange transition-colors">FAQ</a>
-        </div>
-        <div class="flex items-center gap-6 text-[12px] font-bold text-brand-brown tracking-wider">
-            <a href="/login" class="bg-brand-yellow text-brand-brown px-6 py-2.5 rounded-full hover:scale-105 transition-transform shadow-sm">MASUK</a>
-        </div>
-    </nav>
+    <!-- Floating Sticky Navbar (RujukCepat Style - ngikut saat discroll) -->
+    <header class="fixed top-3 sm:top-5 inset-x-0 z-50 flex flex-col items-center px-3 sm:px-6 pointer-events-none">
+        <nav class="w-full max-w-5xl bg-white/95 backdrop-blur-md rounded-full shadow-lg shadow-black/5 border border-emerald-100/80 px-4 sm:px-8 py-2.5 sm:py-3.5 flex items-center justify-between pointer-events-auto transition-all duration-300">
+            <!-- Logo -->
+            <a href="/" class="flex items-center shrink-0">
+                <img src="{{ asset('assets/logo panjang-1.png') }}" alt="AgriCare Logo" class="h-8 sm:h-10 w-auto object-contain">
+            </a>
 
-    <!-- Hero Section -->
-    <section class="hero-section relative w-full overflow-hidden" style="height: calc(100vh - 64px);">
-
-        <!-- Teks besar di background: sebaris -->
-        <div class="absolute inset-x-0 top-[20%] flex justify-center pointer-events-none select-none z-0">
-            <span class="hero-title">SMART FARMING.</span>
-        </div>
-
-        <!-- Foto di tengah (di DEPAN teks, di BELAKANG konten) -->
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 flex items-end justify-center" style="height: 78%;">
-            <img src="foto.png" alt="Hero Image" class="h-full object-contain object-bottom drop-shadow-2xl">
-        </div>
-
-        <!-- Konten kiri (di DEPAN semua) -->
-        <div class="absolute left-6 sm:left-10 lg:left-16 top-[35%] z-30 max-w-[200px] lg:max-w-[240px]">
-            <p class="text-brand-brown text-[11px] sm:text-[12px] lg:text-[13px] font-semibold leading-relaxed mb-5 lg:mb-6">
-                Satu dashboard untuk semua kebutuhan pertanian Anda. Dari deteksi penyakit hingga prediksi panen.
-            </p>
-            <button class="bg-[#2E7D32] text-white px-5 py-3 lg:px-6 lg:py-4 w-40 lg:w-48 flex items-center justify-between hover:bg-[#1B5E20] transition font-bold text-[11px] lg:text-[12px] tracking-wider group">
-                MULAI GRATIS 
-                <svg class="w-3.5 h-3.5 lg:w-4 lg:h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            </button>
-        </div>
-
-        <!-- Konten kanan (di DEPAN semua) -->
-        <div class="absolute right-6 sm:right-10 lg:right-16 top-[35%] z-30 flex flex-col items-end space-y-3">
-            <div class="flex items-center">
-                <div class="w-9 h-9 lg:w-11 lg:h-11 bg-green-100 rounded-full flex items-center justify-center -mr-2 z-10 shadow-md hover:scale-110 transition-transform cursor-pointer">
-                    <svg class="w-3 h-3 text-brand-brown ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="w-9 h-9 lg:w-11 lg:h-11 bg-brand-orange rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform cursor-pointer">
-                    <svg class="w-4 h-4 lg:w-5 lg:h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.62 1.63-1.57 3.12-2.53 4.08zM12.03 7.25C11.85 4 14.43 1.34 17.65 1c.28 3.48-2.67 6.13-5.62 6.25z"/>
-                    </svg>
-                </div>
+            <!-- Nav Links (Desktop/Tablet) -->
+            <div class="hidden md:flex items-center space-x-6 lg:space-x-8 text-[12px] font-bold text-brand-brown tracking-wider">
+                <a href="#beranda" class="hover:text-brand-orange transition-colors">BERANDA</a>
+                <a href="#fitur" class="hover:text-brand-orange transition-colors">FITUR</a>
+                <a href="#testimoni" class="hover:text-brand-orange transition-colors">TESTIMONI</a>
+                <a href="#berita" class="hover:text-brand-orange transition-colors">BERITA</a>
+                <a href="#faq" class="hover:text-brand-orange transition-colors">FAQ</a>
             </div>
-            <p class="text-brand-brown text-[9px] lg:text-[11px] font-extrabold tracking-widest max-w-[140px] lg:max-w-[170px] text-right leading-relaxed">
-                PERTANIAN CERDAS DENGAN KEKUATAN AI.
-            </p>
+
+            <!-- Action Button & Mobile Menu Toggle -->
+            <div class="flex items-center gap-2">
+                <a href="/login" class="bg-[#2E7D32] hover:bg-[#1B5E20] text-white text-[11px] sm:text-[12px] font-bold px-4 sm:px-7 py-2 sm:py-2.5 rounded-full hover:scale-105 transition-all shadow-sm">
+                    MASUK
+                </a>
+                <button type="button" onclick="document.getElementById('landing-mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 rounded-full text-brand-brown hover:bg-emerald-50 transition" aria-label="Menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="landing-mobile-menu" class="hidden md:hidden w-full max-w-5xl mt-2 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-emerald-100 p-4 flex flex-col gap-3 text-xs font-bold text-brand-brown tracking-wider pointer-events-auto">
+            <a href="#beranda" onclick="document.getElementById('landing-mobile-menu').classList.add('hidden')" class="px-3 py-2 rounded-xl hover:bg-emerald-50">BERANDA</a>
+            <a href="#fitur" onclick="document.getElementById('landing-mobile-menu').classList.add('hidden')" class="px-3 py-2 rounded-xl hover:bg-emerald-50">FITUR</a>
+            <a href="#testimoni" onclick="document.getElementById('landing-mobile-menu').classList.add('hidden')" class="px-3 py-2 rounded-xl hover:bg-emerald-50">TESTIMONI</a>
+            <a href="#berita" onclick="document.getElementById('landing-mobile-menu').classList.add('hidden')" class="px-3 py-2 rounded-xl hover:bg-emerald-50">BERITA</a>
+            <a href="#faq" onclick="document.getElementById('landing-mobile-menu').classList.add('hidden')" class="px-3 py-2 rounded-xl hover:bg-emerald-50">FAQ</a>
+        </div>
+    </header>
+
+    <!-- Hero Section (2-Kolom Sesuai Desain RujukCepat) -->
+    <section id="beranda" class="relative w-full min-h-screen pt-28 sm:pt-36 pb-16 lg:pb-24 flex items-center overflow-hidden bg-gradient-to-b from-[#FAFDF9] via-white to-[#F2F8F3]">
+        
+        <!-- Subtle Background Grid with Soft Radial Mask -->
+        <div class="absolute inset-0 pointer-events-none opacity-40">
+            <div class="w-full h-full bg-[linear-gradient(to_right,#1b432415_1px,transparent_1px),linear-gradient(to_bottom,#1b432415_1px,transparent_1px)] bg-[size:4.5rem_4.5rem] [mask-image:radial-gradient(ellipse_75%_65%_at_50%_45%,#000_50%,transparent_95%)]"></div>
         </div>
 
-        <!-- Bottom Left -->
-        <div class="absolute bottom-5 sm:bottom-8 left-6 sm:left-10 lg:left-16 z-30">
-            <div class="w-2 h-2 bg-brand-orange mb-2"></div>
-            <h3 class="text-brand-brown font-anton text-sm lg:text-lg tracking-wide leading-none">TERSEDIA-</h3>
-            <p class="text-brand-brown text-[8px] lg:text-[10px] font-extrabold tracking-widest mt-1">SELURUH INDONESIA</p>
+        <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+            
+            <!-- KOLOM KIRI: Headline, Subtitle, 2 CTA Button -->
+            <div class="lg:col-span-6 space-y-6 lg:space-y-7 text-left">
+                
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-brown leading-[1.12] tracking-tight">
+                    Akses Layanan <br>
+                    <span class="text-brand-orange">Pertanian Cerdas</span> <br>
+                    Lebih Cepat & Terpadu
+                </h1>
+
+                <p class="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl font-normal">
+                    Platform integrasi pertanian modern yang menghubungkan pemantauan lahan, diagnosis penyakit tanaman berbasis AI, prakiraan cuaca, dan jadwal budidaya dalam satu sistem digital terpadu.
+                </p>
+
+                <!-- 2 Tombol CTA Berdampingan Sesuai Referensi -->
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <a href="/register" class="bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-bold text-sm sm:text-base px-8 py-3.5 rounded-xl shadow-md transition-all duration-200 hover:-translate-y-0.5 flex items-center gap-2 group">
+                        <span>Daftar Sekarang</span>
+                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                    <a href="#fitur" class="bg-white hover:bg-gray-50 text-gray-800 font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl border border-gray-200 shadow-sm transition hover:border-gray-300">
+                        Pelajari Fitur
+                    </a>
+                </div>
+
+                
+
+            </div>
+
+            <!-- KOLOM KANAN: Ilustrasi yang Diupload User dengan Soft Arch Backdrop -->
+            <div class="lg:col-span-6 flex justify-center items-center relative">
+                
+                <!-- Soft Green Backdrop Arch (Sesuai Referensi RujukCepat) -->
+                <div class="w-full max-w-[480px] aspect-square rounded-[3rem] bg-gradient-to-br from-emerald-100/60 via-green-50/40 to-transparent absolute -z-10 transform rotate-1"></div>
+
+                <!-- File Gambar Ilustrasi yang Ditambahkan User -->
+                <img src="{{ asset('assets/ilustration.png') }}" 
+                     alt="Ilustrasi Smart Farming AgriCare" 
+                     class="w-full max-w-xl h-auto object-contain drop-shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 ease-out">
+            </div>
+
         </div>
 
     </section>
@@ -222,7 +249,7 @@
             <!-- Right Content (Circular Photo & Floaters) -->
             <div class="flex justify-center relative">
                 <!-- Outer Border / Glow -->
-                <div class="w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] rounded-full border border-white/40 p-2 shadow-inner relative flex items-center justify-center">
+                <div class="w-[260px] h-[260px] sm:w-[360px] sm:h-[360px] rounded-full border border-white/40 p-2 shadow-inner relative flex items-center justify-center">
                     <!-- Circular Image -->
                     <div class="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg">
                         <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600" alt="Petani di sawah" class="w-full h-full object-cover object-center" />
@@ -599,7 +626,7 @@
             </div>
 
             <div class="md:w-[45%] flex items-end justify-center relative mt-6 md:mt-0">
-                <div class="w-[300px] bg-[#1E1E1E] rounded-[3.2rem] p-3.5 shadow-2xl relative z-10 border-4 border-[#2E2E2E] transform translate-y-2 md:-translate-y-16">
+                <div class="w-full max-w-[280px] sm:max-w-[300px] bg-[#1E1E1E] rounded-[2.8rem] sm:rounded-[3.2rem] p-3 sm:p-3.5 shadow-2xl relative z-10 border-4 border-[#2E2E2E] transform translate-y-2 md:-translate-y-16">
                     <!-- Dynamic Island -->
                     <div class="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-20 flex items-center justify-between px-4">
                         <div class="w-2.5 h-2.5 bg-[#1F1F1F] rounded-full"></div>

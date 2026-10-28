@@ -85,7 +85,7 @@
         </div>
         @empty
         {{-- Empty State --}}
-        <div class="lg:col-span-3 flex flex-col items-center justify-center py-20 text-center">
+        <div class="sm:col-span-2 lg:col-span-3 flex flex-col items-center justify-center py-14 sm:py-20 text-center px-4">
             <div class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center mb-6">
                 <span class="material-symbols-outlined text-5xl text-on-surface-variant">agriculture</span>
             </div>
@@ -113,7 +113,7 @@
     </div>
 
     {{-- Quick Stats --}}
-    <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex items-center gap-4">
             <div class="w-12 h-12 rounded-lg bg-green-50 text-green-600 flex items-center justify-center flex-shrink-0">
                 <span class="material-symbols-outlined">agriculture</span>

@@ -10,10 +10,10 @@
                 <h2 class="font-h2 text-h2 text-on-surface">Radar Harga Pasar</h2>
                 <p class="font-body text-body text-on-surface-variant mt-1">Data harga komoditas realtime — Panel Harga Pangan Kementan</p>
             </div>
-            <div class="flex flex-wrap items-center gap-3">
+            <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-3 w-full md:w-auto">
                 {{-- Commodity Selector --}}
                 <div class="relative">
-                    <select id="commodity-select" class="appearance-none bg-primary-container/10 text-primary font-small-label text-small-label px-4 py-2 pr-8 rounded-full border border-primary-container/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/30">
+                    <select id="commodity-select" class="w-full sm:w-auto appearance-none bg-primary-container/40 text-primary font-small-label text-small-label px-4 py-2 pr-8 rounded-full border border-outline-variant/60 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/30">
                         @foreach($commodities as $key => $label)
                         <option value="{{ $key }}" {{ $key === $defaultCommodity ? 'selected' : '' }}>{{ $label }}</option>
                         @endforeach
@@ -21,7 +21,7 @@
                 </div>
                 {{-- Region Selector --}}
                 <div class="relative">
-                    <select id="region-select" class="appearance-none bg-tertiary-container/10 text-tertiary font-small-label text-small-label px-4 py-2 pr-8 rounded-full border border-tertiary-container/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-tertiary/30">
+                    <select id="region-select" class="w-full sm:w-auto appearance-none bg-tertiary-fixed/50 text-tertiary font-small-label text-small-label px-4 py-2 pr-8 rounded-full border border-tertiary-container/20 cursor-pointer focus:outline-none focus:ring-2 focus:ring-tertiary/30">
                         @foreach($regions as $key => $label)
                         <option value="{{ $key }}" {{ $key === $defaultRegion ? 'selected' : '' }}>{{ $label }}</option>
                         @endforeach
@@ -95,16 +95,16 @@
     </section>
 
     {{-- ═══ Section 2: Chart ═══ --}}
-    <section class="bg-surface-container-lowest rounded-[12px] p-6 border border-surface-variant shadow-[0_4px_20px_rgba(27,94,32,0.04)]">
-        <div class="flex items-center justify-between mb-4">
+    <section class="bg-surface-container-lowest rounded-[12px] p-4 sm:p-6 border border-surface-variant shadow-[0_4px_20px_rgba(27,94,32,0.04)]">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
             <h3 class="font-h3 text-h3 text-on-surface">Grafik Harga 3 Bulan</h3>
-            <div class="flex items-center gap-4 text-sm text-on-surface-variant">
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-on-surface-variant">
                 <span class="flex items-center gap-1"><span class="w-4 h-0.5 bg-primary inline-block rounded"></span> Historis</span>
                 <span class="flex items-center gap-1"><span class="w-4 h-0.5 bg-tertiary inline-block rounded border-dashed border-t-2 border-tertiary"></span> Prediksi</span>
                 <span class="flex items-center gap-1"><span class="w-4 h-0.5 bg-outline/40 inline-block rounded"></span> Rata-rata</span>
             </div>
         </div>
-        <div class="relative" style="height:320px;">
+        <div class="relative w-full h-[240px] sm:h-[320px]">
             <canvas id="price-chart"></canvas>
         </div>
     </section>

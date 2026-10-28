@@ -1,33 +1,54 @@
 @extends('layouts.app')
 
+@section('page-title', 'Kalender Tanam')
+
 @section('content')
-<main class="flex-grow w-full max-w-[1600px] mx-auto px-4 xl:px-6 py-6 md:py-8 flex flex-col gap-6">
+<div class="flex-grow w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col gap-6">
     <!-- Header -->
-    <header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+    <header class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-            <h2 class="font-h2 text-h2 text-on-surface mb-2">Kalender Tanam Cerdas</h2>
-            <p class="font-body text-body text-on-surface-variant">Rekomendasi berdasarkan data BMKG + pola historis wilayah.</p>
+            <h2 class="font-h2 text-h2 text-on-surface mb-1">Kalender Tanam Cerdas</h2>
+            <p class="font-body text-sm sm:text-body text-on-surface-variant">Rekomendasi berdasarkan data BMKG + pola historis wilayah.</p>
         </div>
-        <div class="flex items-center gap-3">
-            <div class="relative">
+        @if($lahans->isNotEmpty() && $selectedLahan)
+        <div class="flex items-center gap-2.5 w-full sm:w-auto">
+            <div class="relative flex-1 sm:flex-initial">
                 <select id="lahanSelect"
-                    class="appearance-none bg-surface-container-lowest border border-outline-variant text-on-surface py-2 pl-4 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary font-small-label text-small-label cursor-pointer shadow-[0_2px_8px_rgba(27,94,32,0.04)]">
+                    class="w-full sm:w-auto appearance-none bg-surface-container-lowest border border-outline-variant text-on-surface py-2.5 pl-4 pr-10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary font-small-label text-small-label cursor-pointer shadow-[0_2px_8px_rgba(27,94,32,0.04)]">
                     @foreach($lahans as $l)
                         <option value="{{ $l->id }}" {{ $selectedLahan->id == $l->id ? 'selected' : '' }}>
                             {{ $l->nama }} — {{ ucfirst($l->komoditas) }}
                         </option>
                     @endforeach
                 </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-primary">
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-primary">
                     <span class="material-symbols-outlined text-sm">expand_more</span>
                 </div>
             </div>
-            <button id="btnRefresh" title="Generate ulang"
-                class="p-2 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-low transition-colors">
-                <span class="material-symbols-outlined text-sm">refresh</span>
+            <button id="btnRefresh" type="button" title="Generate ulang"
+                class="p-2.5 rounded-xl bg-white border border-outline-variant text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors shrink-0">
+                <span class="material-symbols-outlined text-base leading-none">refresh</span>
             </button>
         </div>
+        @endif
     </header>
+
+    @if($lahans->isEmpty() || !$selectedLahan)
+    <!-- Empty State When No Land Registered -->
+    <section class="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-12 text-center shadow-sm flex flex-col items-center justify-center">
+        <div class="w-16 h-16 rounded-2xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-3xl">calendar_month</span>
+        </div>
+        <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">Belum Ada Lahan Terdaftar</h3>
+        <p class="text-sm text-slate-600 max-w-md mb-6 leading-relaxed">
+            Daftarkan lahan beserta komoditas dan lokasi desa BMKG terlebih dahulu agar sistem dapat menyusun jadwal semai, pemupukan, hingga estimasi panen secara otomatis.
+        </p>
+        <a href="{{ route('add_land') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#1B5E20] hover:bg-[#2E7D32] text-white font-semibold text-xs sm:text-sm shadow-sm transition">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            <span>Tambah Lahan Pertama</span>
+        </a>
+    </section>
+    @else
 
     <!-- Loading State -->
     <div id="loadingState" class="hidden">
@@ -163,20 +184,10 @@
             <!-- Generated info -->
         </div>
     </div>
-</main>
+    @endif
+</div>
 
-{{-- <!-- Footer -->
-<footer class="bg-slate-50 dark:bg-slate-950 border-t border-green-100 dark:border-slate-800 w-full mt-auto">
-    <div class="flex flex-col md:flex-row justify-between items-center py-10 px-6 gap-6 max-w-7xl mx-auto">
-        <div class="text-lg font-bold text-green-800 dark:text-green-400">AgriCare</div>
-        <div class="font-plus-jakarta text-xs md:text-sm font-normal text-slate-500 dark:text-slate-500 opacity-90">© 2024 AgriCare. Guardian of the Harvest.</div>
-        <div class="flex gap-4">
-            <a class="font-plus-jakarta text-xs md:text-sm font-normal text-slate-500 hover:text-green-600 hover:underline" href="#">Privacy Policy</a>
-            <a class="font-plus-jakarta text-xs md:text-sm font-normal text-slate-500 hover:text-green-600 hover:underline" href="#">Terms of Service</a>
-        </div>
-    </div>
-</footer> --}}
-
+@if($lahans->isNotEmpty() && $selectedLahan)
 <script>
 const CSRF_TOKEN = '{{ csrf_token() }}';
 const GENERATE_URL = '{{ route("calender_planning.generate") }}';
@@ -459,4 +470,5 @@ document.getElementById('nextMonthBtn').addEventListener('click', () => {
     if (cachedData) renderMonthGrid(currentViewMonth, cachedData.timeline || []);
 });
 </script>
+@endif
 @endsection

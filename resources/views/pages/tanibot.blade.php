@@ -1,36 +1,52 @@
 @extends('layouts.app')
 
+@section('page-title', 'TaniBot AI')
+
 @section('content')
-<div class="flex flex-1 overflow-hidden">
+<div class="flex flex-1 h-[calc(100dvh-57px)] sm:h-[calc(100dvh-65px)] overflow-hidden">
         <!-- Main Content Area (3 Panels) -->
-        <main class="flex-1 flex overflow-hidden bg-surface">
+        <div class="flex-1 flex min-w-0 overflow-hidden bg-surface">
             
-            <!-- Panel 1: Lahan Selection (Left Panel) -->
-            <aside class="w-72 border-r border-outline-variant bg-surface-container-lowest hidden lg:flex flex-col">
-                <div class="p-4 border-b border-outline-variant flex flex-col gap-3">
-                    <a href="{{ route('tanibot') }}" class="w-full bg-surface-container hover:bg-surface-container-high text-primary rounded-xl py-3 px-4 font-body font-medium flex justify-start items-center gap-3 border border-outline-variant transition-colors shadow-sm">
-                        <span class="material-symbols-outlined" data-icon="add">add</span>
+            <!-- Panel 1: Lahan & History Selection (Left Panel on Desktop) -->
+            <aside class="w-64 xl:w-72 border-r border-outline-variant/50 bg-surface-container-lowest hidden lg:flex flex-col shrink-0">
+                <div class="p-4 border-b border-outline-variant/50 flex flex-col gap-3">
+                    <a href="{{ route('tanibot') }}" class="w-full bg-surface-container hover:bg-surface-container-high text-primary rounded-xl py-2.5 px-4 font-body text-sm font-semibold flex justify-start items-center gap-2.5 border border-outline-variant/60 transition-colors shadow-xs">
+                        <span class="material-symbols-outlined text-lg" data-icon="add">add</span>
                         Chat Baru
                     </a>
                 </div>
-                <div class="flex-1 overflow-y-auto px-2 py-4 space-y-2">
-                    @foreach($sessions as $s)
-                        <a class="block rounded-lg p-3 mx-2 transition-colors border {{ $selectedSession && $selectedSession->id === $s->id ? 'bg-primary-container/20 border-primary shadow-sm' : 'bg-surface border-transparent hover:bg-surface-container' }}"
+                <div class="flex-1 overflow-y-auto px-2 py-3 space-y-1.5">
+                    @forelse($sessions as $s)
+                        <a class="block rounded-xl p-3 mx-1 transition-colors border {{ $selectedSession && $selectedSession->id === $s->id ? 'bg-primary-container/60 border-primary/40 shadow-xs' : 'bg-surface border-transparent hover:bg-surface-container' }}"
                             href="{{ route('tanibot', ['session_id' => $s->id]) }}">
-                            <p class="font-body text-sm font-semibold {{ $selectedSession && $selectedSession->id === $s->id ? 'text-primary' : 'text-on-surface' }} truncate">{{ $s->judul ?? 'Chat Baru' }}</p>
-                            <p class="text-xs text-on-surface-variant mt-1">{{ $s->lahan->nama ?? 'Lahan' }} • {{ $s->updated_at->diffForHumans(null, true, true) }}</p>
+                            <p class="font-body text-xs sm:text-sm font-semibold {{ $selectedSession && $selectedSession->id === $s->id ? 'text-primary' : 'text-on-surface' }} truncate">{{ $s->judul ?? 'Chat Baru' }}</p>
+                            <p class="text-[11px] text-on-surface-variant mt-0.5 truncate">{{ $s->lahan->nama ?? 'Lahan' }} • {{ $s->updated_at->diffForHumans(null, true, true) }}</p>
                         </a>
-                    @endforeach
+                    @empty
+                        <p class="text-xs text-slate-400 text-center py-6 px-3">Belum ada riwayat percakapan.</p>
+                    @endforelse
                 </div>
             </aside>
 
             <!-- Panel 2: Center Chat Area -->
             <section class="flex-1 flex flex-col min-w-0 bg-surface-bright relative">
-                <!-- Chat Messages Header (Mobile/Tablet) -->
-                <div class="lg:hidden p-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
-                    <h2 class="font-h3 text-h3 text-on-surface">TaniBot</h2>
-                    <a href="{{ route('tanibot') }}" class="p-2 text-primary rounded-full hover:bg-surface-container flex items-center justify-center">
-                        <span class="material-symbols-outlined" data-icon="add">add</span>
+                <!-- Chat Messages Toolbar (Mobile/Tablet Session Switcher + New Chat) -->
+                <div class="lg:hidden px-4 py-2.5 border-b border-outline-variant/50 flex items-center justify-between gap-2 bg-surface-container-lowest shrink-0">
+                    @if($sessions->isNotEmpty())
+                    <select onchange="if(this.value) window.location.href=this.value" class="flex-1 min-w-0 text-xs font-semibold rounded-xl border-outline-variant/70 bg-surface-container py-2 pl-3 pr-8 text-on-surface focus:ring-primary focus:border-primary">
+                        <option value="{{ route('tanibot') }}" {{ !$selectedSession ? 'selected' : '' }}>+ Percakapan Baru</option>
+                        @foreach($sessions as $s)
+                            <option value="{{ route('tanibot', ['session_id' => $s->id]) }}" {{ $selectedSession && $selectedSession->id === $s->id ? 'selected' : '' }}>
+                                {{ \Illuminate\Support\Str::limit($s->judul ?? 'Chat', 28) }} ({{ $s->lahan->nama ?? 'Lahan' }})
+                            </option>
+                        @endforeach
+                    </select>
+                    @else
+                    <span class="text-xs font-semibold text-on-surface-variant">Asisten Pertanian AI</span>
+                    @endif
+                    <a href="{{ route('tanibot') }}" class="px-3 py-1.5 text-xs font-semibold bg-primary text-on-primary rounded-xl hover:opacity-90 flex items-center gap-1 shrink-0">
+                        <span class="material-symbols-outlined text-base" data-icon="add">add</span>
+                        <span>Baru</span>
                     </a>
                 </div>
 
@@ -161,7 +177,7 @@
                 </div>
             </aside>
             @endif
-        </main>
+        </div>
 </div>
 
 <script>

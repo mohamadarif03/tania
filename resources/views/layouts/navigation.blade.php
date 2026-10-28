@@ -1,97 +1,197 @@
-<nav
-    class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md dark:bg-slate-900/95 border-b border-green-100/50 dark:border-slate-800 shadow-sm shadow-green-900/5 font-['Plus_Jakarta_Sans']">
-    <div class="px-4 xl:px-6 w-full max-w-[1600px] mx-auto">
-        <div class="flex items-center justify-between h-16 gap-4">
-            <!-- Kiri: Logo -->
-            <a href="{{ route('dashboard') }}" class="flex items-center gap-2 shrink-0">
-                <div class="flex items-center gap-2 text-xl font-bold tracking-tight text-green-800 dark:text-green-400">
-                    <img src="{{ asset('assets/logo panjang-1.png') }}" alt="AgriCare Logo" class="h-8 w-auto">
+@php
+    $isManageLandsActive = request()->routeIs('manage_lands', 'add_land', 'lahan.*');
+@endphp
 
-                </div>
+<!-- Desktop Floating Sidebar (Sleek Floating Bar on Left) -->
+<aside class="fixed top-4 left-4 bottom-4 w-64 bg-white/95 backdrop-blur-md rounded-3xl shadow-xl shadow-green-950/5 border border-[#E8F5E9] p-5 hidden lg:flex flex-col justify-between z-40 transition-all duration-300">
+    
+    <!-- Top Section: Brand Logo & Scrollable Navigation -->
+    <div class="flex-1 min-h-0 flex flex-col">
+        <!-- Logo TANIA -->
+        <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5 px-2 py-1 mb-5 shrink-0 group">
+            <img src="{{ asset('assets/logo panjang-1.png') }}" alt="TANIA Logo" class="h-9 w-auto object-contain group-hover:scale-105 transition-transform">
+        </a>
+
+        <!-- Navigation Menu (Scrollable on compact laptop viewports) -->
+        <nav class="flex-1 overflow-y-auto hide-scrollbar space-y-1 text-xs font-semibold pr-0.5">
+            <!-- 1. Dashboard -->
+            <a href="{{ route('dashboard') }}"
+               class="group flex items-center gap-3 px-3.5 py-2.5 xl:py-3 rounded-2xl transition-all duration-200 {{ request()->routeIs('dashboard') ? 'bg-[#1B5E20] text-white shadow-md shadow-green-950/20 font-bold' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                <span class="material-symbols-outlined text-[20px] transition-colors {{ request()->routeIs('dashboard') ? 'text-green-200' : 'text-slate-400 group-hover:text-[#1B5E20]' }}">grid_view</span>
+                <span>Dashboard</span>
             </a>
 
-            <!-- Tengah: Menu Navigasi -->
-            <div class="hidden xl:flex items-center gap-1 flex-1 justify-center">
-                <a href="{{ route('dashboard') }}"
-                    class="px-3 py-2 text-sm font-semibold transition-colors whitespace-nowrap {{ request()->routeIs('dashboard') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Dashboard</a>
-                <a href="{{ route('calender_planning') }}"
-                    class="px-3 py-2 text-sm font-semibold transition-colors whitespace-nowrap {{ request()->routeIs('calender_planning') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Kalender
-                    Tanam</a>
-                <a href="{{ route('kalkulator_pemupukan') }}"
-                    class="px-3 py-2 text-sm font-semibold transition-colors whitespace-nowrap {{ request()->routeIs('kalkulator_pemupukan') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Pemupukan</a>
-                <a href="{{ route('pest_detection_alert') }}"
-                    class="px-3 py-2 text-sm font-semibold transition-colors whitespace-nowrap {{ request()->routeIs('pest_detection_alert') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Deteksi
-                    Hama</a>
+            <!-- 2. Kalender Tanam -->
+            <a href="{{ route('calender_planning') }}"
+               class="group flex items-center gap-3 px-3.5 py-2.5 xl:py-3 rounded-2xl transition-all duration-200 {{ request()->routeIs('calender_planning') ? 'bg-[#1B5E20] text-white shadow-md shadow-green-950/20 font-bold' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                <span class="material-symbols-outlined text-[20px] transition-colors {{ request()->routeIs('calender_planning') ? 'text-green-200' : 'text-slate-400 group-hover:text-[#1B5E20]' }}">calendar_month</span>
+                <span>Kalender Tanam</span>
+            </a>
 
-                <a href="{{ route('tanibot') }}"
-                    class="px-3 py-2 text-sm font-semibold transition-colors whitespace-nowrap {{ request()->routeIs('tanibot') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Tanya
-                    AI</a>
-                <a href="{{ route('ai_reccomendation') }}"
-                    class="px-3 py-2 text-sm font-semibold transition-colors whitespace-nowrap {{ request()->routeIs('ai_reccomendation') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Rekomendasi</a>
-            </div>
+            <!-- 3. Kalkulator Pupuk -->
+            <a href="{{ route('kalkulator_pemupukan') }}"
+               class="group flex items-center gap-3 px-3.5 py-2.5 xl:py-3 rounded-2xl transition-all duration-200 {{ request()->routeIs('kalkulator_pemupukan') ? 'bg-[#1B5E20] text-white shadow-md shadow-green-950/20 font-bold' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                <span class="material-symbols-outlined text-[20px] transition-colors {{ request()->routeIs('kalkulator_pemupukan') ? 'text-green-200' : 'text-slate-400 group-hover:text-[#1B5E20]' }}">calculate</span>
+                <span>Kalkulator Pupuk</span>
+            </a>
 
-            <!-- Kanan: User Area -->
-            <div class="flex items-center gap-3 shrink-0">
-                <button
-                    class="relative p-2 text-slate-500 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-400 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
-                    <span class="material-symbols-outlined">notifications</span>
-                    <span
-                        class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
-                </button>
+            <!-- 4. Deteksi Hama -->
+            <a href="{{ route('pest_detection_alert') }}"
+               class="group flex items-center gap-3 px-3.5 py-2.5 xl:py-3 rounded-2xl transition-all duration-200 {{ request()->routeIs('pest_detection_alert') ? 'bg-[#1B5E20] text-white shadow-md shadow-green-950/20 font-bold' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                <span class="material-symbols-outlined text-[20px] transition-colors {{ request()->routeIs('pest_detection_alert') ? 'text-green-200' : 'text-slate-400 group-hover:text-[#1B5E20]' }}">pest_control</span>
+                <span>Deteksi Hama</span>
+            </a>
 
-                <!-- Avatar Dropdown -->
-                <div class="relative group cursor-pointer">
-                    <div
-                        class="w-10 h-10 rounded-full overflow-hidden border-2 border-green-100 dark:border-green-900 hover:border-green-300 transition-colors">
-                        <img alt="User profile" class="w-full h-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiaOkqtKvpONSNSfG7t2BTmSea82V4J5sOVkoufLpc1HBZcIjGYg3X8jlq9TXt2cUMtG8QbpNk4LNICnmhIckd-kSb70pI9HUEGpM3Ks5N1Jzv9zKqNPVIevc31fyaxVBlnakxlp96Qig5fRgFN4VWQpA8_yHZOAh2xorQbJD2mBxXrBX8I0yTEW82z4BKm6F0UKCwZtem4dTDvhHTzrMxE6nu4UY3f8NdJ20dmT3eYUE72FFS_Ri5UeaKP_KrgK9pyZWIMYbmyS4" />
-                    </div>
-                    <!-- Dropdown Menu -->
-                    <div
-                        class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right translate-y-2 group-hover:translate-y-0 z-50">
-                        <div class="py-2 flex flex-col">
-                            <a href="#"
-                                class="px-4 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-700 hover:text-green-700 dark:hover:text-green-400 flex items-center gap-3"><span
-                                    class="material-symbols-outlined text-[20px]">person</span> Profil Saya</a>
-                            <a href="{{ route('manage_lands') }}"
-                                class="px-4 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-700 hover:text-green-700 dark:hover:text-green-400 flex items-center gap-3"><span
-                                    class="material-symbols-outlined text-[20px]">agriculture</span> Kelola Lahan</a>
-                            <a href="{{ route('add_land') }}"
-                                class="px-4 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-700 hover:text-green-700 dark:hover:text-green-400 flex items-center gap-3"><span
-                                    class="material-symbols-outlined text-[20px]">add_location_alt</span> Tambah
-                                Lahan</a>
-                            <div class="h-px bg-slate-100 dark:bg-slate-700 my-1"></div>
-                            <form method="POST" action="{{ route('logout') }}" class="w-full">
-                                @csrf
-                                <button type="submit"
-                                    class="w-full text-left px-4 py-2.5 text-sm font-semibold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-3"><span
-                                        class="material-symbols-outlined text-[20px]">logout</span> Keluar</button>
-                            </form>
-                        </div>
-                    </div>
+            <!-- 5. TaniBot -->
+            <a href="{{ route('tanibot') }}"
+               class="group flex items-center gap-3 px-3.5 py-2.5 xl:py-3 rounded-2xl transition-all duration-200 {{ request()->routeIs('tanibot') ? 'bg-[#1B5E20] text-white shadow-md shadow-green-950/20 font-bold' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                <span class="material-symbols-outlined text-[20px] transition-colors {{ request()->routeIs('tanibot') ? 'text-green-200' : 'text-slate-400 group-hover:text-[#1B5E20]' }}">smart_toy</span>
+                <span>TaniBot</span>
+            </a>
+
+            <!-- 6. Rekomendasi Budidaya -->
+            <a href="{{ route('ai_reccomendation') }}"
+               class="group flex items-center gap-3 px-3.5 py-2.5 xl:py-3 rounded-2xl transition-all duration-200 {{ request()->routeIs('ai_reccomendation') ? 'bg-[#1B5E20] text-white shadow-md shadow-green-950/20 font-bold' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                <span class="material-symbols-outlined text-[20px] transition-colors {{ request()->routeIs('ai_reccomendation') ? 'text-green-200' : 'text-slate-400 group-hover:text-[#1B5E20]' }}">auto_awesome</span>
+                <span>Rekomendasi Budidaya</span>
+            </a>
+
+            <!-- 7. Kelola Lahan -->
+            <a href="{{ route('manage_lands') }}"
+               class="group flex items-center gap-3 px-3.5 py-2.5 xl:py-3 rounded-2xl transition-all duration-200 {{ $isManageLandsActive ? 'bg-[#1B5E20] text-white shadow-md shadow-green-950/20 font-bold' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                <span class="material-symbols-outlined text-[20px] transition-colors {{ $isManageLandsActive ? 'text-green-200' : 'text-slate-400 group-hover:text-[#1B5E20]' }}">agriculture</span>
+                <span>Kelola Lahan</span>
+            </a>
+
+            <!-- 8. Harga Pasar -->
+            @if(Route::has('market_price'))
+            <a href="{{ route('market_price') }}"
+               class="group flex items-center gap-3 px-3.5 py-2.5 xl:py-3 rounded-2xl transition-all duration-200 {{ request()->routeIs('market_price') ? 'bg-[#1B5E20] text-white shadow-md shadow-green-950/20 font-bold' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                <span class="material-symbols-outlined text-[20px] transition-colors {{ request()->routeIs('market_price') ? 'text-green-200' : 'text-slate-400 group-hover:text-[#1B5E20]' }}">trending_up</span>
+                <span>Harga Pasar</span>
+            </a>
+            @endif
+        </nav>
+    </div>
+
+    <!-- Bottom Section: User Profile -->
+    <div class="pt-4 mt-2 border-t border-[#E8F5E9] shrink-0">
+        <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-9 h-9 rounded-full bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center font-bold text-xs border border-[#A5D6A7]/50 shrink-0 uppercase">
+                    {{ substr(Auth::user()->name ?? 'P', 0, 1) }}
+                </div>
+                <div class="min-w-0 text-left">
+                    <p class="text-xs font-bold text-slate-900 truncate">{{ Auth::user()->name ?? 'Petani Modern' }}</p>
+                    <p class="text-[11px] text-slate-500 truncate mt-0.5">{{ Auth::user()->email ?? 'Petani Terverifikasi' }}</p>
                 </div>
             </div>
-        </div>
 
-        <!-- Mobile/Tablet Menu (Scrollable horizontally) -->
-        <div
-            class="flex xl:hidden overflow-x-auto no-scrollbar py-2 border-t border-slate-100 dark:border-slate-800 gap-6 mt-1">
-            <a href="{{ route('dashboard') }}"
-                class="text-sm font-semibold whitespace-nowrap {{ request()->routeIs('dashboard') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400 pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Dashboard</a>
-            <a href="{{ route('calender_planning') }}"
-                class="text-sm font-semibold whitespace-nowrap {{ request()->routeIs('calender_planning') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400 pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Kalender
-                Tanam</a>
-            <a href="{{ route('kalkulator_pemupukan') }}"
-                class="text-sm font-semibold whitespace-nowrap {{ request()->routeIs('kalkulator_pemupukan') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400 pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Pemupukan</a>
-            <a href="{{ route('pest_detection_alert') }}"
-                class="text-sm font-semibold whitespace-nowrap {{ request()->routeIs('pest_detection_alert') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400 pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Deteksi
-                Hama</a>
-
-            <a href="{{ route('tanibot') }}"
-                class="text-sm font-semibold whitespace-nowrap {{ request()->routeIs('tanibot') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400 pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Tanya
-                AI</a>
-            <a href="{{ route('ai_reccomendation') }}"
-                class="text-sm font-semibold whitespace-nowrap {{ request()->routeIs('ai_reccomendation') ? 'text-green-700 dark:text-green-400 border-b-2 border-green-700 dark:border-green-400 pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-300' }}">Rekomendasi</a>
+            <!-- Logout Button -->
+            <form method="POST" action="{{ route('logout') }}" class="shrink-0">
+                @csrf
+                <button type="submit" title="Keluar" class="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition">
+                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                </button>
+            </form>
         </div>
     </div>
-</nav>
+</aside>
+
+<!-- Mobile & Tablet Slide-over Drawer Backdrop & Sidebar -->
+<div id="mobile-sidebar-drawer" class="fixed inset-0 z-50 lg:hidden hidden" role="dialog" aria-modal="true">
+    <!-- Backdrop -->
+    <div id="mobile-sidebar-backdrop" class="fixed inset-0 bg-slate-950/45 backdrop-blur-xs transition-opacity"></div>
+    
+    <!-- Drawer Content -->
+    <div class="fixed inset-y-0 left-0 w-72 max-w-[84vw] bg-white shadow-2xl p-5 flex flex-col justify-between z-10">
+        <div class="flex-1 min-h-0 flex flex-col">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#E8F5E9] shrink-0">
+                <a href="{{ route('dashboard') }}" class="flex items-center">
+                    <img src="{{ asset('assets/logo panjang-1.png') }}" alt="TANIA Logo" class="h-8 w-auto object-contain">
+                </a>
+                <button id="mobile-sidebar-close" type="button" class="p-1.5 rounded-xl text-slate-600 hover:bg-[#E8F5E9] hover:text-[#1B5E20] transition" aria-label="Tutup Menu">
+                    <span class="material-symbols-outlined text-xl leading-none">close</span>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto space-y-1 text-xs font-semibold pr-1">
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition {{ request()->routeIs('dashboard') ? 'bg-[#1B5E20] text-white font-bold shadow-sm' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                    <span class="material-symbols-outlined text-[20px]">grid_view</span> Dashboard
+                </a>
+                <a href="{{ route('calender_planning') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition {{ request()->routeIs('calender_planning') ? 'bg-[#1B5E20] text-white font-bold shadow-sm' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                    <span class="material-symbols-outlined text-[20px]">calendar_month</span> Kalender Tanam
+                </a>
+                <a href="{{ route('kalkulator_pemupukan') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition {{ request()->routeIs('kalkulator_pemupukan') ? 'bg-[#1B5E20] text-white font-bold shadow-sm' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                    <span class="material-symbols-outlined text-[20px]">calculate</span> Kalkulator Pupuk
+                </a>
+                <a href="{{ route('pest_detection_alert') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition {{ request()->routeIs('pest_detection_alert') ? 'bg-[#1B5E20] text-white font-bold shadow-sm' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                    <span class="material-symbols-outlined text-[20px]">pest_control</span> Deteksi Hama
+                </a>
+                <a href="{{ route('tanibot') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition {{ request()->routeIs('tanibot') ? 'bg-[#1B5E20] text-white font-bold shadow-sm' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                    <span class="material-symbols-outlined text-[20px]">smart_toy</span> TaniBot
+                </a>
+                <a href="{{ route('ai_reccomendation') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition {{ request()->routeIs('ai_reccomendation') ? 'bg-[#1B5E20] text-white font-bold shadow-sm' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                    <span class="material-symbols-outlined text-[20px]">auto_awesome</span> Rekomendasi Budidaya
+                </a>
+                <a href="{{ route('manage_lands') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition {{ $isManageLandsActive ? 'bg-[#1B5E20] text-white font-bold shadow-sm' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                    <span class="material-symbols-outlined text-[20px]">agriculture</span> Kelola Lahan
+                </a>
+                @if(Route::has('market_price'))
+                <a href="{{ route('market_price') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition {{ request()->routeIs('market_price') ? 'bg-[#1B5E20] text-white font-bold shadow-sm' : 'text-slate-700 hover:text-[#1B5E20] hover:bg-[#E8F5E9]' }}">
+                    <span class="material-symbols-outlined text-[20px]">trending_up</span> Harga Pasar
+                </a>
+                @endif
+            </nav>
+        </div>
+
+        <div class="pt-4 mt-2 border-t border-[#E8F5E9] flex items-center justify-between gap-2 shrink-0">
+            <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-8 h-8 rounded-full bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center font-bold text-xs shrink-0 uppercase">
+                    {{ substr(Auth::user()->name ?? 'P', 0, 1) }}
+                </div>
+                <div class="min-w-0">
+                    <p class="text-xs font-bold text-slate-900 truncate">{{ Auth::user()->name ?? 'Petani' }}</p>
+                    <p class="text-[11px] text-slate-500 truncate">{{ Auth::user()->email ?? '' }}</p>
+                </div>
+            </div>
+            <form method="POST" action="{{ route('logout') }}" class="shrink-0">
+                @csrf
+                <button type="submit" class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-red-600 hover:bg-red-50 flex items-center gap-1 transition">
+                    <span class="material-symbols-outlined text-[16px]">logout</span> Keluar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const drawer = document.getElementById('mobile-sidebar-drawer');
+        const openBtn = document.getElementById('mobile-sidebar-toggle');
+        const closeBtn = document.getElementById('mobile-sidebar-close');
+        const backdrop = document.getElementById('mobile-sidebar-backdrop');
+
+        function openDrawer() {
+            if (!drawer) return;
+            drawer.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            if (!drawer) return;
+            drawer.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        if (openBtn) openBtn.addEventListener('click', openDrawer);
+        if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+        if (backdrop) backdrop.addEventListener('click', closeDrawer);
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && drawer && !drawer.classList.contains('hidden')) {
+                closeDrawer();
+            }
+        });
+    });
+</script>

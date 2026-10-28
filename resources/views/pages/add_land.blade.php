@@ -217,15 +217,15 @@
         {{-- Sidebar Info --}}
         <div class="lg:col-span-4 space-y-6">
             {{-- TaniBot Tip --}}
-            <div class="bg-primary-container/10 rounded-2xl p-6 border border-primary-container/20 relative overflow-hidden">
-                <div class="absolute -right-6 -top-6 text-primary/10 rotate-12">
-                    <span class="material-symbols-outlined" style="font-size: 120px;">psychiatry</span>
+            <div class="bg-[#E8F5E9]/70 rounded-2xl p-6 border border-[#A5D6A7]/40 relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 text-[#1B5E20]/10 rotate-12 pointer-events-none select-none">
+                    <span class="material-symbols-outlined" style="font-size: 110px;">psychiatry</span>
                 </div>
                 <div class="relative z-10">
-                    <div class="flex items-center gap-2 text-primary font-bold mb-3">
+                    <div class="flex items-center gap-2 text-[#1B5E20] font-bold mb-2.5">
                         <span class="material-symbols-outlined">lightbulb</span> Tips TaniBot
                     </div>
-                    <p class="text-sm text-on-surface-variant font-body leading-relaxed mb-4">
+                    <p class="text-sm text-on-surface-variant font-body leading-relaxed">
                         Memasukkan <strong>tanggal tanam</strong> dan <strong>lokasi akurat</strong> sangat penting! TaniBot akan menyesuaikan prediksi cuaca mikro dan peringatan hama khusus untuk area lahan Anda.
                     </p>
                 </div>
