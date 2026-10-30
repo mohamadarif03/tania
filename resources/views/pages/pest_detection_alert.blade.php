@@ -1,8 +1,8 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
 <!-- Main Content Canvas -->
-    <main class="flex-grow w-full max-w-[1600px] mx-auto px-4 xl:px-6 py-6 md:py-8 flex flex-col gap-6">
+    <div class="flex-grow w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col gap-6">
         <!-- Hero Upload Section -->
         <section class="flex flex-col gap-sm">
             <div class="text-center md:text-left mb-sm">
@@ -49,7 +49,7 @@
                 <h2 class="font-h2 text-h2 text-on-surface mb-md">Hasil Analisis Terkini</h2>
             </div>
             <div
-                class="col-span-1 md:col-span-4 bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden shadow-[0_2px_8px_rgba(27,94,32,0.04)] flex flex-col">
+                class="col-span-1 md:col-span-4 bg-surface-container-lowest rounded-xl border border-slate-200/80 overflow-hidden shadow-[0_2px_8px_rgba(27,94,32,0.04)] flex flex-col">
                 <div class="h-48 w-full bg-surface-container-high relative" id="result-image-container">
                     <img id="result-image" alt="Preview" class="w-full h-full object-cover"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSrQl8JGr6azHtpphmgiN_H8r4LggQwEaqnBIlUM9otG0IHFw7yzUcfk4WG2wp5gv9NC52V_jUQJnOHlIC0x6FtrW8-y-z6OKLTua58N88zcdM5T0MoyEruwtGg025nQoUmxlm1H-Q87S0lEPOO29OuX_NR8vKuzsO2J_FlBTIGXuKpY6iN6Lf_ytSA1fgPPWBsQMFY17h0GVJoy-SFhK6CxgutYnu0LCnSwp2risaw--cyKmS6V5jNzye56GEXmgEWBf8Fwn77-o" />
@@ -76,14 +76,14 @@
                 </div>
             </div>
             <div
-                class="col-span-1 md:col-span-8 bg-surface-container-lowest rounded-xl border border-surface-variant p-md shadow-[0_2px_8px_rgba(27,94,32,0.04)] flex flex-col justify-between">
+                class="col-span-1 md:col-span-8 bg-surface-container-lowest rounded-xl border border-slate-200/80 p-md shadow-[0_2px_8px_rgba(27,94,32,0.04)] flex flex-col justify-between">
                 <div>
                     <h3 class="font-h3 text-h3 text-primary mb-sm flex items-center gap-2">
                         <span class="material-symbols-outlined">health_and_safety</span> Rekomendasi Penanganan
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-md mt-md">
                         <div
-                            class="bg-surface-bright rounded-lg p-sm border border-surface-variant relative overflow-hidden">
+                            class="bg-surface-bright rounded-lg p-sm border border-slate-200/80 relative overflow-hidden">
                             <div class="absolute top-0 right-0 p-2 opacity-10">
                                 <span class="material-symbols-outlined text-4xl text-primary">flash_on</span>
                             </div>
@@ -94,7 +94,7 @@
                             </ul>
                         </div>
                         <div
-                            class="bg-surface-bright rounded-lg p-sm border border-surface-variant relative overflow-hidden">
+                            class="bg-surface-bright rounded-lg p-sm border border-slate-200/80 relative overflow-hidden">
                             <div class="absolute top-0 right-0 p-2 opacity-10">
                                 <span class="material-symbols-outlined text-4xl text-primary">shield</span>
                             </div>
@@ -115,7 +115,7 @@
             </div>
         </section>
 
-    </main>
+    </div>
 <script>
     const uploadBox = document.getElementById('upload-box');
     const fileInput = document.getElementById('foto-input');

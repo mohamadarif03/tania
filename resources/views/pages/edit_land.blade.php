@@ -1,7 +1,7 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
-<main class="flex-grow w-full max-w-[1600px] mx-auto px-4 xl:px-6 py-6 md:py-8 flex flex-col gap-6">
+<div class="flex-grow w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col gap-6">
 
     {{-- Flash Messages --}}
     @if(session('success'))
@@ -41,7 +41,7 @@
         {{-- Form Section --}}
         <div class="lg:col-span-8">
             <form action="{{ route('lahan.update', $lahan) }}" method="POST" enctype="multipart/form-data"
-                  class="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-[0_4px_20px_rgba(27,94,32,0.03)] border border-outline-variant/30 space-y-6">
+                  class="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200/80 space-y-6">
                 @csrf
                 @method('PUT')
 
@@ -53,7 +53,7 @@
                         <input type="text" id="nama" name="nama"
                                value="{{ old('nama', $lahan->nama) }}"
                                placeholder="Misal: Sawah Blok A"
-                               class="w-full pl-11 pr-4 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all @error('nama') border-red-400 bg-red-50 @enderror" required>
+                               class="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all @error('nama') border-red-400 bg-red-50 @enderror" required>
                     </div>
                     @error('nama')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
                 </div>
@@ -65,7 +65,7 @@
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">grass</span>
                             <select id="komoditas" name="komoditas"
-                                    class="w-full pl-11 pr-10 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all" required>
+                                    class="w-full pl-11 pr-10 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all" required>
                                 @foreach(['padi' => 'Padi', 'cabai' => 'Cabai', 'bawang_merah' => 'Bawang Merah'] as $val => $label)
                                 <option value="{{ $val }}" {{ old('komoditas', $lahan->komoditas) === $val ? 'selected' : '' }}>{{ $label }}</option>
                                 @endforeach
@@ -80,8 +80,8 @@
                         <div class="flex gap-2">
                             <input type="number" id="luas" name="luas" step="0.01" min="0"
                                    value="{{ old('luas', $lahan->luas) }}"
-                                   class="w-full px-4 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all">
-                            <select name="area_unit" class="w-32 px-3 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none cursor-pointer transition-all">
+                                   class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all">
+                            <select name="area_unit" class="w-32 px-3 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none cursor-pointer transition-all">
                                 <option value="ha" selected>Hektar (Ha)</option>
                                 <option value="m2">Meter Persegi (m²)</option>
                             </select>
@@ -96,7 +96,7 @@
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">eco</span>
                             <select id="fase_tanam" name="fase_tanam"
-                                    class="w-full pl-11 pr-10 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all">
+                                    class="w-full pl-11 pr-10 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all">
                                 @foreach(['persiapan' => 'Persiapan Lahan', 'persemaian' => 'Persemaian', 'tanam' => 'Penanaman', 'vegetatif' => 'Vegetatif', 'generatif' => 'Generatif', 'panen' => 'Panen', 'pasca_panen' => 'Pasca Panen'] as $val => $label)
                                 <option value="{{ $val }}" {{ old('fase_tanam', $lahan->fase_tanam) === $val ? 'selected' : '' }}>{{ $label }}</option>
                                 @endforeach
@@ -111,7 +111,7 @@
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">security</span>
                             <select id="status_risiko" name="status_risiko"
-                                    class="w-full pl-11 pr-10 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all">
+                                    class="w-full pl-11 pr-10 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all">
                                 <option value="optimal" {{ old('status_risiko', $lahan->status_risiko) === 'optimal' ? 'selected' : '' }}>Optimal (Aman)</option>
                                 <option value="waspada" {{ old('status_risiko', $lahan->status_risiko) === 'waspada' ? 'selected' : '' }}>Waspada</option>
                                 <option value="kritis" {{ old('status_risiko', $lahan->status_risiko) === 'kritis' ? 'selected' : '' }}>Kritis</option>
@@ -128,7 +128,7 @@
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">calendar_month</span>
                         <input type="date" id="tanggal_tanam" name="tanggal_tanam"
                                value="{{ old('tanggal_tanam', $lahan->tanggal_tanam?->toDateString()) }}"
-                               class="w-full pl-11 pr-4 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all">
+                               class="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all">
                     </div>
                 </div>
 
@@ -139,7 +139,7 @@
                         <span class="absolute left-4 top-3.5 material-symbols-outlined text-outline text-[20px]">location_on</span>
                         <textarea id="alamat" name="alamat" rows="2"
                                   placeholder="Misal: Desa Karangjati, Kec. Sampang, Cilacap"
-                                  class="w-full pl-11 pr-4 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all placeholder:text-outline-variant resize-none">{{ old('alamat', $lahan->alamat) }}</textarea>
+                                  class="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all placeholder:text-outline-variant resize-none">{{ old('alamat', $lahan->alamat) }}</textarea>
                     </div>
                 </div>
 
@@ -163,7 +163,7 @@
                 </div>
 
                 {{-- Submit Buttons --}}
-                <div class="pt-4 flex flex-col sm:flex-row items-center gap-3 justify-between border-t border-outline-variant/30">
+                <div class="pt-4 flex flex-col sm:flex-row items-center gap-3 justify-between border-t border-slate-200/80">
                     {{-- Hapus Lahan (trigger form di luar) --}}
                     <button type="button" onclick="document.getElementById('delete-lahan-form').submit()"
                             class="flex items-center gap-2 text-sm font-semibold text-red-500 hover:text-red-700 hover:bg-red-50 px-4 py-2.5 rounded-xl transition-colors">
@@ -171,11 +171,11 @@
                         Hapus Lahan
                     </button>
 
-                    <div class="flex items-center gap-3">
-                        <a href="{{ route('lahan.show', $lahan) }}" class="px-6 py-2.5 rounded-xl text-sm font-semibold text-on-surface-variant bg-surface hover:bg-surface-container transition-colors">
+                    <div class="flex w-full sm:w-auto items-center gap-3">
+                        <a href="{{ route('lahan.show', $lahan) }}" class="flex-1 sm:flex-none text-center px-6 py-2.5 rounded-xl text-sm font-semibold text-on-surface-variant bg-surface hover:bg-surface-container transition-colors">
                             Batal
                         </a>
-                        <button type="submit" class="px-6 py-2.5 rounded-xl text-sm font-semibold text-on-primary bg-primary hover:bg-primary-container shadow-md hover:shadow-lg transition-all active:scale-95 flex items-center gap-2">
+                        <button type="submit" class="flex-1 sm:flex-none justify-center px-6 py-2.5 rounded-xl text-sm font-semibold text-on-primary bg-primary hover:bg-[#2E7D32] shadow-sm transition-all active:scale-95 flex items-center gap-2">
                             <span class="material-symbols-outlined text-[18px]">save</span>
                             Simpan Perubahan
                         </button>
@@ -193,7 +193,7 @@
         {{-- Sidebar --}}
         <div class="lg:col-span-4 space-y-6">
             {{-- Info Box --}}
-            <div class="bg-primary-container/10 rounded-2xl p-6 border border-primary-container/20">
+            <div class="bg-[#E8F5E9]/70 rounded-2xl p-6 border border-[#A5D6A7]/40">
                 <div class="flex items-center gap-2 text-primary font-bold mb-3">
                     <span class="material-symbols-outlined">info</span> Informasi
                 </div>
@@ -203,7 +203,7 @@
             </div>
 
             {{-- Current Info Card --}}
-            <div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/30">
+            <div class="bg-white rounded-3xl p-6 border border-slate-200/80">
                 <h3 class="font-semibold text-on-surface mb-4">Info Lahan Saat Ini</h3>
                 <div class="space-y-3 text-sm">
                     <div class="flex justify-between">
@@ -234,7 +234,7 @@
             </div>
         </div>
     </div>
-</main>
+</div>
 
 <script>
 function previewFoto(input) {

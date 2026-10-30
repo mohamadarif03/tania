@@ -1,7 +1,7 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
-<main class="flex-grow w-full max-w-[1600px] mx-auto px-4 xl:px-6 py-6 md:py-8 flex flex-col gap-6">
+<div class="flex-grow w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col gap-6">
 
     {{-- ═══ Page Header + Selectors ═══ --}}
     <section class="flex flex-col gap-3">
@@ -41,7 +41,7 @@
 
     {{-- ═══ Section 1: Price Cards ═══ --}}
     <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-        <div class="col-span-1 md:col-span-2 bg-surface-container-lowest rounded-[12px] p-6 border border-surface-variant shadow-[0_4px_20px_rgba(27,94,32,0.04)] relative overflow-hidden group">
+        <div class="col-span-1 md:col-span-2 bg-surface-container-lowest rounded-2xl p-6 border border-slate-200/80 shadow-[0_4px_20px_rgba(27,94,32,0.04)] relative overflow-hidden group">
             <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                 <span class="material-symbols-outlined text-8xl text-primary" style="font-variation-settings:'FILL' 1;">eco</span>
             </div>
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="col-span-1 flex flex-col gap-gutter">
-            <div class="bg-surface-container-lowest rounded-[12px] p-5 border border-surface-variant shadow-[0_4px_20px_rgba(27,94,32,0.04)] flex-1 flex flex-col justify-center">
+            <div class="bg-surface-container-lowest rounded-2xl p-5 border border-slate-200/80 shadow-[0_4px_20px_rgba(27,94,32,0.04)] flex-1 flex flex-col justify-center">
                 <span class="font-small-label text-small-label text-on-surface-variant mb-1">Harga Tertinggi Bulan Ini</span>
                 <div class="flex items-baseline gap-2">
                     <span class="font-h3 text-h3 text-on-surface" id="card-monthly-high">—</span>
@@ -81,7 +81,7 @@
                 </div>
                 <span class="font-small-label text-small-label text-outline mt-1" id="card-monthly-high-date">—</span>
             </div>
-            <div class="bg-surface-container-lowest rounded-[12px] p-5 border border-surface-variant shadow-[0_4px_20px_rgba(27,94,32,0.04)] flex-1 flex flex-col justify-center">
+            <div class="bg-surface-container-lowest rounded-2xl p-5 border border-slate-200/80 shadow-[0_4px_20px_rgba(27,94,32,0.04)] flex-1 flex flex-col justify-center">
                 <span class="font-small-label text-small-label text-on-surface-variant mb-1">Prediksi Minggu Depan</span>
                 <div class="flex items-baseline gap-2 mb-2">
                     <span class="font-h3 text-h3 text-on-surface" id="card-prediction-range">—</span>
@@ -95,7 +95,7 @@
     </section>
 
     {{-- ═══ Section 2: Chart ═══ --}}
-    <section class="bg-surface-container-lowest rounded-[12px] p-4 sm:p-6 border border-surface-variant shadow-[0_4px_20px_rgba(27,94,32,0.04)]">
+    <section class="bg-surface-container-lowest rounded-2xl p-4 sm:p-6 border border-slate-200/80 shadow-[0_4px_20px_rgba(27,94,32,0.04)]">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
             <h3 class="font-h3 text-h3 text-on-surface">Grafik Harga 3 Bulan</h3>
             <div class="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-on-surface-variant">
@@ -110,7 +110,7 @@
     </section>
 
     {{-- ═══ Section 3: AI Narration ═══ --}}
-    <section id="ai-narration-section" class="bg-primary/5 border border-primary/15 rounded-[12px] p-6 relative overflow-hidden">
+    <section id="ai-narration-section" class="bg-primary/5 border border-primary/15 rounded-2xl p-6 relative overflow-hidden">
         <div class="absolute top-3 right-3 opacity-20">
             <span class="material-symbols-outlined text-4xl text-primary">psychology</span>
         </div>
@@ -125,7 +125,7 @@
     </section>
 
     {{-- ═══ Section 4: Recommendation ═══ --}}
-    <section id="recommendation-section" class="rounded-[12px] p-6 border shadow-[0_4px_20px_rgba(27,94,32,0.04)] bg-surface-container-lowest border-surface-variant">
+    <section id="recommendation-section" class="rounded-2xl p-6 border shadow-[0_4px_20px_rgba(27,94,32,0.04)] bg-surface-container-lowest border-surface-variant">
         <div class="flex items-center gap-2 mb-4">
             <span class="material-symbols-outlined" id="rec-icon">recommend</span>
             <h3 class="font-h3 text-h3" id="rec-title">Rekomendasi</h3>
@@ -147,7 +147,7 @@
     </section>
 
     {{-- ═══ Section 5: Region Comparison ═══ --}}
-    <section class="bg-surface-container-lowest rounded-[12px] p-6 border border-surface-variant shadow-[0_4px_20px_rgba(27,94,32,0.04)]">
+    <section class="bg-surface-container-lowest rounded-2xl p-6 border border-slate-200/80 shadow-[0_4px_20px_rgba(27,94,32,0.04)]">
         <h3 class="font-h3 text-h3 text-on-surface mb-4">Perbandingan Wilayah</h3>
         <div class="overflow-x-auto">
             <table class="w-full text-left">
@@ -166,14 +166,14 @@
     </section>
 
     {{-- ═══ Section 6: Other Commodities ═══ --}}
-    <section class="bg-surface-container-lowest rounded-[12px] p-6 border border-surface-variant shadow-[0_4px_20px_rgba(27,94,32,0.04)]">
+    <section class="bg-surface-container-lowest rounded-2xl p-6 border border-slate-200/80 shadow-[0_4px_20px_rgba(27,94,32,0.04)]">
         <h3 class="font-h3 text-h3 text-on-surface mb-4">Komoditas Lain</h3>
         <div id="other-commodities-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div class="col-span-full text-center text-on-surface-variant py-4">Memuat...</div>
         </div>
     </section>
 
-</main>
+</div>
 
 {{-- Chart.js CDN --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
@@ -367,10 +367,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const section = document.getElementById('ai-narration-section');
         if (d.trend_analysis) {
             el.textContent = d.trend_analysis;
-            section.className = 'bg-primary/5 border border-primary/15 rounded-[12px] p-6 relative overflow-hidden';
+            section.className = 'bg-primary/5 border border-primary/15 rounded-2xl p-6 relative overflow-hidden';
         } else {
             el.innerHTML = '<div class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-sm">info</span> Analisis AI belum tersedia, menampilkan data harga saja.</div>';
-            section.className = 'bg-surface-container/50 border border-surface-variant rounded-[12px] p-6 relative overflow-hidden';
+            section.className = 'bg-surface-container/50 border border-slate-200/80 rounded-2xl p-6 relative overflow-hidden';
         }
     }
 
@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const trendColor = c.trend >= 0 ? 'text-primary' : 'text-error';
             const trendIcon = c.trend >= 0 ? 'trending_up' : 'trending_down';
             return `<button onclick="switchCommodity('${c.commodity}')"
-                class="bg-surface-container-low hover:bg-surface-container border border-surface-variant rounded-xl p-4 text-left transition-all hover:shadow-md cursor-pointer group">
+                class="bg-surface-container-low hover:bg-surface-container border border-slate-200/80 rounded-xl p-4 text-left transition-all hover:shadow-md cursor-pointer group">
                 <span class="font-small-label text-small-label text-on-surface-variant">${c.commodity_label}</span>
                 <div class="font-h3 text-h3 text-on-surface mt-1">${fmtRp(c.price)}<span class="text-xs text-outline">/kg</span></div>
                 <div class="flex items-center gap-1 mt-1 ${trendColor}">

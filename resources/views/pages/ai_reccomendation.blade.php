@@ -1,13 +1,13 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
-<main class="flex-grow w-full max-w-[1600px] mx-auto px-4 xl:px-6 py-6 md:py-8 flex flex-col gap-6" x-data="recommendationPage()">
+<div class="flex-grow w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col gap-6" x-data="recommendationPage()">
     <!-- Header -->
     <header class="mb-md">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
                 @if($selectedLahan)
-                <div class="inline-flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-full mb-3 border border-outline-variant/30">
+                <div class="inline-flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-full mb-3 border border-slate-200/80">
                     <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 0;">eco</span>
                     <span class="font-small-label text-small-label text-on-surface-variant">{{ $selectedLahan->nama }} — {{ ucfirst($selectedLahan->komoditas) }} — {{ $selectedLahan->fase_label }}</span>
                 </div>
@@ -44,14 +44,14 @@
     @else
 
     <!-- Loading Overlay (Visible when generating via JS) -->
-    <div x-show="isLoading" class="bg-primary/5 rounded-[12px] p-8 border border-primary/20 text-center flex flex-col items-center justify-center gap-3" style="display: none;">
+    <div x-show="isLoading" class="bg-primary/5 rounded-2xl p-8 border border-primary/20 text-center flex flex-col items-center justify-center gap-3" style="display: none;">
         <div class="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
         <p class="font-medium text-primary">TaniBot sedang menganalisis lahan Anda...</p>
         <p class="text-sm text-on-surface-variant">Memproses data cuaca, fase tanam, harga, dan hama.</p>
     </div>
 
     <!-- Error State -->
-    <div x-show="hasError" class="bg-error-container rounded-[12px] p-8 border border-error/20 text-center" style="display: none;">
+    <div x-show="hasError" class="bg-error-container rounded-2xl p-8 border border-error/20 text-center" style="display: none;">
         <span class="material-symbols-outlined text-4xl text-error mb-2">error</span>
         <h3 class="text-lg font-bold text-on-error-container mb-2">Gagal Memuat Rekomendasi</h3>
         <p class="text-error mb-4" x-text="errorMessage"></p>
@@ -63,7 +63,7 @@
         <!-- Top Row Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-lg">
             <!-- Left Card: Skor -->
-            <div class="card-surface rounded-[12px] p-md border border-outline-variant/30 card-shadow flex flex-col relative overflow-hidden">
+            <div class="card-surface rounded-2xl p-md border border-slate-200/80 card-shadow flex flex-col relative overflow-hidden">
                 <div class="absolute top-0 right-0 p-4 opacity-10">
                     <span class="material-symbols-outlined text-[64px]" :class="skorColorText" style="font-variation-settings: 'FILL' 1;">spa</span>
                 </div>
@@ -96,7 +96,7 @@
             </div>
 
             <!-- Right Card: Kerugian -->
-            <div class="card-surface rounded-[12px] p-md border border-error/20 card-shadow flex flex-col bg-gradient-to-br from-[#F8FAF8] to-error-container/10">
+            <div class="card-surface rounded-2xl p-md border border-error/20 card-shadow flex flex-col bg-gradient-to-br from-[#F8FAF8] to-error-container/10">
                 <h3 class="font-h3 text-h3 text-on-surface mb-2 flex items-center gap-2">
                     <span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 0;">warning</span>
                     Estimasi Kerugian Jika Diabaikan
@@ -146,9 +146,9 @@
             </div>
 
             <!-- Tab Content -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-gutter">
                 <template x-for="item in activeChecklists" :key="item.id">
-                    <div class="card-surface rounded-[12px] p-sm border card-shadow flex flex-col relative overflow-hidden group transition-colors" :class="item.is_checked ? 'border-primary/50 bg-primary/5' : 'border-outline-variant/30 hover:border-primary/50'">
+                    <div class="card-surface rounded-2xl p-sm border card-shadow flex flex-col relative overflow-hidden group transition-colors" :class="item.is_checked ? 'border-primary/50 bg-primary/5' : 'border-slate-200/80 hover:border-primary/50'">
                         <div class="flex justify-between items-start mb-3">
                             <!-- Label -->
                             <span x-show="activeTab === 'hari_ini'" class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider">SEGERA</span>
@@ -181,7 +181,7 @@
 
         <!-- Bottom Related Sections -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-lg">
-            <a class="card-surface rounded-[12px] p-4 border border-outline-variant/30 card-shadow flex items-center justify-between group hover:ambient-shadow transition-all" href="{{ route('pest_detection_alert') }}">
+            <a class="card-surface rounded-2xl p-4 border border-slate-200/80 card-shadow flex items-center justify-between group hover:ambient-shadow transition-all" href="{{ route('pest_detection_alert') }}">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bug_report</span>
@@ -190,7 +190,7 @@
                 </div>
                 <span class="material-symbols-outlined text-tertiary group-hover:translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
             </a>
-            <a class="card-surface rounded-[12px] p-4 border border-outline-variant/30 card-shadow flex items-center justify-between group hover:ambient-shadow transition-all" href="{{ route('market_price') }}">
+            <a class="card-surface rounded-2xl p-4 border border-slate-200/80 card-shadow flex items-center justify-between group hover:ambient-shadow transition-all" href="{{ route('market_price') }}">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-700">
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">monitoring</span>
@@ -202,7 +202,7 @@
         </div>
     </div>
     @endif
-</main>
+</div>
 
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script>

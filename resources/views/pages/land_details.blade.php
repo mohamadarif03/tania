@@ -1,7 +1,7 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
-<main class="flex-grow w-full max-w-[1600px] mx-auto px-4 xl:px-6 py-6 md:py-8 flex flex-col gap-6">
+<div class="flex-grow w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col gap-6">
 
     {{-- Flash Messages --}}
     @if(session('success'))
@@ -39,7 +39,7 @@
                     {{ $lahan->is_aktif ? 'Set Nonaktif' : 'Set Aktif' }}
                 </button>
             </form>
-            <a href="{{ route('lahan.edit', $lahan) }}" class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-xl transition-colors border border-outline-variant/30">
+            <a href="{{ route('lahan.edit', $lahan) }}" class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-xl transition-colors border border-slate-200/80">
                 <span class="material-symbols-outlined">edit</span>
             </a>
             <form action="{{ route('lahan.destroy', $lahan) }}" method="POST"
@@ -60,7 +60,7 @@
             {{-- Status Cards --}}
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {{-- Risk Level --}}
-                <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex flex-col gap-3">
+                <div class="bg-surface-container-lowest p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-3">
                     <div class="flex items-center gap-2 text-on-surface-variant">
                         <span class="material-symbols-outlined text-[20px]">security</span>
                         <span class="text-xs font-bold uppercase tracking-wider">Risiko Iklim</span>
@@ -85,7 +85,7 @@
                 </div>
 
                 {{-- Luas --}}
-                <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex flex-col gap-3">
+                <div class="bg-surface-container-lowest p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-3">
                     <div class="flex items-center gap-2 text-on-surface-variant">
                         <span class="material-symbols-outlined text-[20px]">square_foot</span>
                         <span class="text-xs font-bold uppercase tracking-wider">Luas Lahan</span>
@@ -102,7 +102,7 @@
                 </div>
 
                 {{-- Growth Phase --}}
-                <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex flex-col gap-3">
+                <div class="bg-surface-container-lowest p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-3">
                     <div class="flex items-center gap-2 text-on-surface-variant">
                         <span class="material-symbols-outlined text-[20px]">eco</span>
                         <span class="text-xs font-bold uppercase tracking-wider">Fase Tanam</span>
@@ -118,7 +118,7 @@
             </div>
 
             {{-- Land Details & Photo --}}
-            <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm overflow-hidden flex flex-col md:flex-row">
+            <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col md:flex-row">
                 <div class="md:w-1/3 relative h-64 md:h-auto">
                     <img src="{{ $lahan->foto_url }}" alt="Foto Lahan" class="w-full h-full object-cover">
                     <a href="{{ route('lahan.edit', $lahan) }}" class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-lg shadow-md hover:bg-white transition-colors">
@@ -145,7 +145,7 @@
                         <div>
                             <p class="text-xs text-on-surface-variant font-bold uppercase mb-1">Tanggal Tanam</p>
                             <div class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-purple-600">calendar_today</span>
+                                <span class="material-symbols-outlined text-[#1B5E20]">calendar_today</span>
                                 <span class="font-semibold text-on-surface">{{ $lahan->tanggal_tanam ? $lahan->tanggal_tanam->translatedFormat('d F Y') : 'Belum diisi' }}</span>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
             </div>
 
             {{-- Seasonal History --}}
-            <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm p-6 md:p-8">
+            <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 md:p-8">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="font-h3 text-xl text-on-surface">Riwayat Musim Tanam</h3>
                 </div>
@@ -178,7 +178,7 @@
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <thead>
-                            <tr class="border-b border-outline-variant/30">
+                            <tr class="border-b border-slate-200/80">
                                 <th class="pb-4 font-bold text-xs text-on-surface-variant uppercase">Periode</th>
                                 <th class="pb-4 font-bold text-xs text-on-surface-variant uppercase">Komoditas</th>
                                 <th class="pb-4 font-bold text-xs text-on-surface-variant uppercase text-right">Hasil Panen</th>
@@ -221,7 +221,7 @@
         {{-- RIGHT COLUMN --}}
         <div class="lg:col-span-4 space-y-6">
             {{-- Quick Actions --}}
-            <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm p-6">
+            <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
                 <h3 class="font-h3 text-lg text-on-surface mb-4">Aksi Cepat</h3>
                 <div class="space-y-3">
                     <a href="{{ route('lahan.edit', $lahan) }}" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-sm font-semibold transition-colors">
@@ -233,14 +233,14 @@
                         Lihat Kalender Tanam
                     </a>
                     <a href="{{ route('ai_reccomendation') }}" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-sm font-semibold transition-colors">
-                        <span class="material-symbols-outlined text-purple-600">auto_awesome</span>
+                        <span class="material-symbols-outlined text-[#1B5E20]">auto_awesome</span>
                         Rekomendasi AI
                     </a>
                 </div>
             </div>
 
             {{-- Land Info Summary --}}
-            <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm p-6">
+            <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
                 <h3 class="font-h3 text-lg text-on-surface mb-4">Ringkasan</h3>
                 <div class="space-y-3 text-sm">
                     <div class="flex justify-between items-center">
@@ -288,5 +288,5 @@
             </div>
         </div>
     </div>
-</main>
+</div>
 @endsection

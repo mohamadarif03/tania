@@ -1,7 +1,7 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
-<main class="flex-grow w-full max-w-[1600px] mx-auto px-4 xl:px-6 py-6 md:py-8 flex flex-col gap-6">
+<div class="flex-grow w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col gap-6">
 
     {{-- Header --}}
     <div class="flex items-center gap-3 mb-2">
@@ -30,7 +30,7 @@
         {{-- Form Section --}}
         <div class="lg:col-span-8">
             <form action="{{ route('lahan.store') }}" method="POST" enctype="multipart/form-data"
-                  class="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-[0_4px_20px_rgba(27,94,32,0.03)] border border-outline-variant/30 space-y-6">
+                  class="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200/80 space-y-6">
                 @csrf
 
                 {{-- Nama Lahan --}}
@@ -40,7 +40,7 @@
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">landscape</span>
                         <input type="text" id="nama" name="nama" value="{{ old('nama') }}"
                                placeholder="Misal: Sawah Blok A, Kebun Cabai Ciawi"
-                               class="w-full pl-11 pr-4 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all placeholder:text-outline-variant @error('nama') border-red-400 bg-red-50 @enderror" required>
+                               class="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all placeholder:text-outline-variant @error('nama') border-red-400 bg-red-50 @enderror" required>
                     </div>
                     @error('nama')<p class="text-xs text-red-500 mt-1">{{ $message }}</p>@enderror
                 </div>
@@ -52,7 +52,7 @@
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">grass</span>
                             <select id="komoditas" name="komoditas"
-                                    class="w-full pl-11 pr-10 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all @error('komoditas') border-red-400 bg-red-50 @enderror" required>
+                                    class="w-full pl-11 pr-10 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all @error('komoditas') border-red-400 bg-red-50 @enderror" required>
                                 <option value="" disabled {{ old('komoditas') ? '' : 'selected' }}>Pilih tanaman...</option>
                                 @foreach(['padi' => 'Padi', 'cabai' => 'Cabai', 'bawang_merah' => 'Bawang Merah'] as $val => $label)
                                 <option value="{{ $val }}" {{ old('komoditas') === $val ? 'selected' : '' }}>{{ $label }}</option>
@@ -69,8 +69,8 @@
                         <div class="flex gap-2">
                             <input type="number" id="luas" name="luas" step="0.01" min="0"
                                    value="{{ old('luas') }}" placeholder="0.0"
-                                   class="w-full px-4 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all placeholder:text-outline-variant">
-                            <select name="area_unit" class="w-32 px-3 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none cursor-pointer transition-all">
+                                   class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all placeholder:text-outline-variant">
+                            <select name="area_unit" class="w-32 px-3 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none cursor-pointer transition-all">
                                 <option value="ha">Hektar (Ha)</option>
                                 <option value="m2">Meter Persegi (m²)</option>
                             </select>
@@ -85,7 +85,7 @@
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">calendar_month</span>
                         <input type="date" id="tanggal_tanam" name="tanggal_tanam"
                                value="{{ old('tanggal_tanam') }}"
-                               class="w-full pl-11 pr-4 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all cursor-text">
+                               class="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all cursor-text">
                     </div>
                     <p class="text-xs text-on-surface-variant mt-2 flex items-center gap-1">
                         <span class="material-symbols-outlined text-[14px]">info</span>
@@ -102,7 +102,7 @@
                         <div>
                             <label for="prov_id" class="block text-xs font-medium text-on-surface-variant mb-1">1. Provinsi</label>
                             <div class="relative">
-                                <select id="prov_id" class="w-full pl-4 pr-10 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all">
+                                <select id="prov_id" class="w-full pl-4 pr-10 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all">
                                     <option value="" selected disabled>Pilih Provinsi...</option>
                                 </select>
                                 <span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px] pointer-events-none">expand_more</span>
@@ -113,7 +113,7 @@
                         <div>
                             <label for="kota_id" class="block text-xs font-medium text-on-surface-variant mb-1">2. Kota/Kabupaten</label>
                             <div class="relative">
-                                <select id="kota_id" class="w-full pl-4 pr-10 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all" disabled>
+                                <select id="kota_id" class="w-full pl-4 pr-10 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all" disabled>
                                     <option value="" selected disabled>Pilih Kota/Kab...</option>
                                 </select>
                                 <span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px] pointer-events-none">expand_more</span>
@@ -124,7 +124,7 @@
                         <div>
                             <label for="kec_id" class="block text-xs font-medium text-on-surface-variant mb-1">3. Kecamatan</label>
                             <div class="relative">
-                                <select id="kec_id" class="w-full pl-4 pr-10 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all" disabled>
+                                <select id="kec_id" class="w-full pl-4 pr-10 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all" disabled>
                                     <option value="" selected disabled>Pilih Kecamatan...</option>
                                 </select>
                                 <span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px] pointer-events-none">expand_more</span>
@@ -135,7 +135,7 @@
                         <div>
                             <label for="kel_id" class="block text-xs font-medium text-on-surface-variant mb-1">4. Kelurahan/Desa <span class="text-outline">(referensi)</span></label>
                             <div class="relative">
-                                <select id="kel_id" class="w-full pl-4 pr-10 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all" disabled>
+                                <select id="kel_id" class="w-full pl-4 pr-10 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none appearance-none cursor-pointer transition-all" disabled>
                                     <option value="" selected disabled>Pilih Kelurahan...</option>
                                 </select>
                                 <span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px] pointer-events-none">expand_more</span>
@@ -181,7 +181,7 @@
                     <div class="relative">
                         <span class="absolute left-4 top-3.5 material-symbols-outlined text-outline text-[20px]">location_on</span>
                         <textarea id="alamat" name="alamat" rows="2" placeholder="Akan terisi setelah kode wilayah divalidasi..."
-                                  class="w-full pl-11 pr-4 py-3 rounded-xl bg-surface-container-low border border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all placeholder:text-outline-variant resize-none" readonly>{{ old('alamat') }}</textarea>
+                                  class="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all placeholder:text-outline-variant resize-none" readonly>{{ old('alamat') }}</textarea>
                     </div>
                 </div>
 
@@ -202,11 +202,11 @@
                 </div>
 
                 {{-- Submit Buttons --}}
-                <div class="pt-4 flex flex-col sm:flex-row items-center gap-3 justify-end border-t border-outline-variant/30">
+                <div class="pt-4 flex flex-col sm:flex-row items-center gap-3 justify-end border-t border-slate-200/80">
                     <a href="{{ route('manage_lands') }}" class="w-full sm:w-auto px-6 py-2.5 rounded-xl text-sm font-semibold text-on-surface-variant bg-surface hover:bg-surface-container transition-colors text-center">
                         Batal
                     </a>
-                    <button type="submit" class="w-full sm:w-auto px-6 py-2.5 rounded-xl text-sm font-semibold text-on-primary bg-primary hover:bg-primary-container shadow-md hover:shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2">
+                    <button type="submit" class="w-full sm:w-auto px-6 py-2.5 rounded-xl text-sm font-semibold text-on-primary bg-primary hover:bg-[#2E7D32] shadow-sm transition-all active:scale-95 flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined text-[18px]">save</span>
                         Simpan Lahan
                     </button>
@@ -232,7 +232,7 @@
             </div>
 
             {{-- Manfaat Tracker --}}
-            <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-[0_2px_12px_rgba(27,94,32,0.02)] border border-outline-variant/30">
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80">
                 <h3 class="font-h3 text-h3 text-on-surface mb-4">Keuntungan Mendaftarkan Lahan:</h3>
                 <ul class="space-y-4">
                     <li class="flex items-start gap-3">
@@ -266,7 +266,7 @@
             </div>
         </div>
     </div>
-</main>
+</div>
 
 <script>
 function previewFoto(input) {

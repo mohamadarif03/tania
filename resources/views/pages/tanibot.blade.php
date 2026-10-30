@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('page-title', 'TaniBot AI')
 
@@ -105,7 +105,7 @@
                             placeholder="{{ $selectedSession ? 'Ketik pesan Anda...' : 'Pilih lahan dan ketik pertanyaan...' }}" type="text"
                             onkeypress="if(event.key === 'Enter') sendChat()" />
                         <button id="send-btn" onclick="sendChat()"
-                            class="absolute right-3 p-2 bg-primary text-on-primary rounded-full hover:bg-primary-container transition-colors shadow-sm disabled:opacity-50 flex items-center justify-center h-10 w-10">
+                            class="absolute right-3 p-2 bg-primary text-on-primary rounded-full hover:bg-[#2E7D32] transition-colors shadow-sm disabled:opacity-50 flex items-center justify-center h-10 w-10">
                             <span class="material-symbols-outlined text-[20px]" data-icon="send">send</span>
                         </button>
                     </div>

@@ -1,7 +1,7 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
-<main class="flex-grow w-full max-w-[1200px] mx-auto px-4 xl:px-6 py-6 md:py-8 flex flex-col gap-8">
+<div class="flex-grow w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col gap-8">
 
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <h1 class="text-2xl md:text-3xl font-bold text-on-surface">Kalkulator Pemupukan</h1>
@@ -11,7 +11,7 @@
     <section>
         <h2 class="text-lg font-semibold text-on-surface mb-4">1. Pilih Lahan</h2>
         @if($lahans->isEmpty())
-            <div class="bg-surface rounded-2xl p-8 text-center shadow-sm border border-outline-variant/30 flex flex-col items-center">
+            <div class="bg-surface rounded-2xl p-8 text-center shadow-sm border border-slate-200/80 flex flex-col items-center">
                 <div class="w-14 h-14 rounded-2xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mb-3">
                     <span class="material-symbols-outlined text-3xl">calculate</span>
                 </div>
@@ -57,7 +57,7 @@
     <!-- Output Container -->
     <div id="output-container" class="hidden flex-col gap-8">
         <!-- 2. Jadwal Pemupukan (Timeline) -->
-        <section class="bg-surface rounded-2xl p-5 sm:p-6 shadow-sm border border-outline-variant/30 overflow-hidden">
+        <section class="bg-surface rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200/80 overflow-hidden">
             <h2 class="text-lg font-semibold text-on-surface mb-6">2. Jadwal Pemupukan (Fase Tanaman)</h2>
             
             <div class="overflow-x-auto pb-2">
@@ -101,7 +101,7 @@
         </section>
 
         <!-- 4. Rekap Satu Musim Tanam -->
-        <section class="bg-surface rounded-2xl p-6 shadow-sm border border-outline-variant/30">
+        <section class="bg-surface rounded-2xl p-6 shadow-sm border border-slate-200/80">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2">
                 <h2 class="text-lg font-semibold text-on-surface">4. Rekap Satu Musim Tanam</h2>
             </div>
@@ -112,7 +112,7 @@
         </section>
     </div>
 
-</main>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

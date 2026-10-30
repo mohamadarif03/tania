@@ -1,114 +1,53 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Masuk - AgriCare</title>
-    <link rel="icon" type="image/png" href="{{ asset('assets/logokotak1.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('assets/logokotak1.png') }}">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "primary": "#1B5E20",
-                        "primary-container": "#E8F5E9",
-                        "on-primary": "#ffffff",
-                        "on-primary-container": "#1B5E20",
-                        "background": "#F5FFF5",
-                        "on-background": "#1B5E20",
-                        "surface": "#ffffff",
-                        "on-surface": "#1B5E20",
-                        "surface-variant": "#E8F5E9",
-                        "on-surface-variant": "#3E6B4F",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-container-low": "#F1F8E9",
-                        "outline": "#4CAF50",
-                        "outline-variant": "#A5D6A7",
-                    },
-                    "fontFamily": {
-                        "body": ["Plus Jakarta Sans"],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .shadow-ambient {
-            box-shadow: 0 4px 20px rgba(27, 94, 32, 0.08);
-        }
-    </style>
-</head>
-<body class="bg-background text-on-background font-body min-h-screen flex items-center justify-center p-4 relative overflow-y-auto overflow-x-hidden py-10">
-    <!-- Abstract Background Decoration -->
-    <div class="absolute inset-0 z-0 opacity-10 pointer-events-none">
-        <div class="absolute top-20 left-10 w-64 h-64 bg-primary rounded-full mix-blend-multiply filter blur-3xl"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary-container rounded-full mix-blend-multiply filter blur-3xl"></div>
-    </div>
-    <img alt="Lahan Pertanian AgriCare" class="absolute inset-0 w-full h-full object-cover opacity-20 z-0 pointer-events-none" src="{{ asset('assets/herosection.jpeg') }}" />
-    
-    <div class="w-full max-w-[360px] md:max-w-sm bg-surface-container-lowest rounded-2xl shadow-ambient border border-outline-variant/30 p-6 relative z-10">
-        <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center mb-4">
-                <img src="{{ asset('assets/logokotak1.png') }}" alt="AgriCare Logo" class="h-12 w-auto">
-            </div>
-            <h1 class="text-2xl font-bold text-on-surface mb-2">Selamat Datang Kembali</h1>
-            <p class="text-on-surface-variant text-sm">Masuk ke akun AgriCare Anda</p>
+@extends('layouts.auth')
+
+@section('title', 'Masuk')
+
+@section('content')
+<div class="mb-8">
+    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">Selamat datang kembali</h1>
+    <p class="mt-2 text-sm text-slate-600">Masuk ke akun TANIA Anda untuk melanjutkan.</p>
+</div>
+
+<form class="space-y-5" method="POST" action="{{ route('login.post') }}">
+    @csrf
+
+    <div>
+        <label for="email" class="block text-sm font-semibold text-slate-800 mb-1.5">Email</label>
+        <div class="relative">
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-[20px] pointer-events-none">mail</span>
+            <input id="email" name="email" type="email" value="{{ old('email') }}" placeholder="nama@email.com" required autofocus autocomplete="email"
+                   class="w-full pl-11 pr-4 py-3 rounded-xl bg-white border @error('email') border-red-400 @else border-slate-200 @enderror focus:border-[#1B5E20] focus:ring-2 focus:ring-[#1B5E20]/15 text-sm outline-none transition placeholder:text-slate-400">
         </div>
+        @error('email')<p class="text-xs text-red-600 mt-1.5">{{ $message }}</p>@enderror
+    </div>
 
-        <form class="space-y-5" method="POST" action="{{ route('login.post') }}">
-            @csrf
-            <div>
-                <label class="block text-sm font-medium text-on-surface mb-1.5" for="email">Email</label>
-                <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">mail</span>
-                    <input class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-container-low border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all @error('email') border-red-500 @enderror" id="email" name="email" placeholder="Masukkan email Anda" type="email" value="{{ old('email') }}" required autofocus />
-                </div>
-                @error('email')
-                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                @enderror
-            </div>
-            
-            <div>
-                <label class="block text-sm font-medium text-on-surface mb-1.5" for="password">Kata Sandi</label>
-                <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-[20px]">lock</span>
-                    <input class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-container-low border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-on-surface font-body text-sm outline-none transition-all @error('password') border-red-500 @enderror" id="password" name="password" placeholder="Masukkan kata sandi" type="password" required />
-                </div>
-                @error('password')
-                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <input class="h-4 w-4 text-primary focus:ring-primary border-outline-variant rounded" id="remember-me" name="remember" type="checkbox" />
-                    <label class="ml-2 block text-sm text-on-surface-variant" for="remember-me">Ingat saya</label>
-                </div>
-            </div>
-
-            <button class="w-full bg-primary text-on-primary py-2.5 px-4 rounded-xl font-medium hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-[0.98] duration-200 shadow-sm" type="submit">
-                Masuk
+    <div>
+        <label for="password" class="block text-sm font-semibold text-slate-800 mb-1.5">Kata Sandi</label>
+        <div class="relative">
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-[20px] pointer-events-none">lock</span>
+            <input id="password" name="password" type="password" placeholder="Masukkan kata sandi" required autocomplete="current-password"
+                   class="w-full pl-11 pr-12 py-3 rounded-xl bg-white border @error('password') border-red-400 @else border-slate-200 @enderror focus:border-[#1B5E20] focus:ring-2 focus:ring-[#1B5E20]/15 text-sm outline-none transition placeholder:text-slate-400">
+            <button type="button" onclick="const i=document.getElementById('password');const s=i.type==='password';i.type=s?'text':'password';this.querySelector('span').textContent=s?'visibility_off':'visibility'"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-[#1B5E20]" aria-label="Tampilkan kata sandi">
+                <span class="material-symbols-outlined text-[20px]">visibility</span>
             </button>
-        </form>
-
-        <div class="mt-8 pt-6 border-t border-outline-variant/30 text-center">
-            <p class="text-sm text-on-surface-variant">
-                Belum punya akun? 
-                <a class="font-semibold text-primary hover:text-primary-container transition-colors" href="{{ route('register') }}">Daftar sekarang</a>
-            </p>
         </div>
-        
-        <div class="mt-6 text-center">
-            <a href="{{ route('index') }}" class="inline-flex items-center text-sm text-on-surface-variant hover:text-primary transition-colors">
-                <span class="material-symbols-outlined text-[18px] mr-1">arrow_back</span>
-                Kembali ke Beranda
-            </a>
-        </div>
+        @error('password')<p class="text-xs text-red-600 mt-1.5">{{ $message }}</p>@enderror
     </div>
-</body>
-</html>
+
+    <label class="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
+        <input id="remember-me" name="remember" type="checkbox" class="h-4 w-4 rounded border-slate-300 text-[#1B5E20] focus:ring-[#1B5E20]">
+        Ingat saya
+    </label>
+
+    <button type="submit"
+            class="w-full bg-[#1B5E20] hover:bg-[#2E7D32] text-white py-3 rounded-xl text-sm font-bold shadow-sm transition active:scale-[0.99]">
+        Masuk
+    </button>
+</form>
+
+<p class="mt-8 pt-6 border-t border-slate-200 text-sm text-slate-600 text-center">
+    Belum punya akun?
+    <a href="{{ route('register') }}" class="font-bold text-[#1B5E20] hover:underline">Daftar sekarang</a>
+</p>
+@endsection

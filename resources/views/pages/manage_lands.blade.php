@@ -1,7 +1,7 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
-<main class="flex-grow w-full max-w-[1600px] mx-auto px-4 xl:px-6 py-6 md:py-8 flex flex-col gap-6">
+<div class="flex-grow w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col gap-6">
 
     {{-- Flash Messages --}}
     @if(session('success'))
@@ -20,7 +20,7 @@
             <h1 class="font-h2 text-h2 text-on-surface leading-tight">Kelola Lahan Anda</h1>
             <p class="font-body text-sm text-on-surface-variant mt-1">Pantau status, fase tanam, dan risiko untuk semua lahan pertanian Anda dalam satu tempat.</p>
         </div>
-        <a href="{{ route('add_land') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-xl font-semibold shadow-md hover:bg-primary-container hover:shadow-lg transition-all active:scale-95 w-fit">
+        <a href="{{ route('add_land') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-xl font-semibold shadow-sm hover:bg-[#2E7D32] transition-all active:scale-95 w-fit">
             <span class="material-symbols-outlined">add</span>
             Tambah Lahan Baru
         </a>
@@ -31,7 +31,7 @@
 
         @forelse($lahans as $lahan)
         {{-- Land Card --}}
-        <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 overflow-hidden shadow-[0_4px_20px_rgba(27,94,32,0.03)] hover:shadow-md transition-shadow group">
+        <div class="bg-white rounded-3xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
             <div class="relative h-40 overflow-hidden">
                 <img src="{{ $lahan->foto_url }}" alt="{{ $lahan->nama }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -91,7 +91,7 @@
             </div>
             <h3 class="font-h3 text-xl text-on-surface mb-2">Belum Ada Lahan</h3>
             <p class="text-sm text-on-surface-variant max-w-sm mb-6">Daftarkan lahan pertanian Anda dan dapatkan analisis AI, prediksi cuaca, serta peringatan hama secara real-time.</p>
-            <a href="{{ route('add_land') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-xl font-semibold shadow-md hover:bg-primary-container transition-all">
+            <a href="{{ route('add_land') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-xl font-semibold shadow-sm hover:bg-[#2E7D32] transition-all">
                 <span class="material-symbols-outlined">add</span>
                 Tambah Lahan Pertama
             </a>
@@ -114,7 +114,7 @@
 
     {{-- Quick Stats --}}
     <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-        <div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex items-center gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 flex items-center gap-4">
             <div class="w-12 h-12 rounded-lg bg-green-50 text-green-600 flex items-center justify-center flex-shrink-0">
                 <span class="material-symbols-outlined">agriculture</span>
             </div>
@@ -123,7 +123,7 @@
                 <p class="text-xl font-bold text-on-surface">{{ $totalLahan }} Area</p>
             </div>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex items-center gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 flex items-center gap-4">
             <div class="w-12 h-12 rounded-lg bg-green-50 text-green-600 flex items-center justify-center flex-shrink-0">
                 <span class="material-symbols-outlined">square_foot</span>
             </div>
@@ -132,7 +132,7 @@
                 <p class="text-xl font-bold text-on-surface">{{ number_format($totalLuas, 1) }} Ha</p>
             </div>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex items-center gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 flex items-center gap-4">
             <div class="w-12 h-12 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
                 <span class="material-symbols-outlined">warning</span>
             </div>
@@ -141,8 +141,8 @@
                 <p class="text-xl font-bold text-on-surface">{{ $perluPerhatian }} Lahan</p>
             </div>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex items-center gap-4">
-            <div class="w-12 h-12 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-lg bg-purple-50 text-[#1B5E20] flex items-center justify-center flex-shrink-0">
                 <span class="material-symbols-outlined">trending_up</span>
             </div>
             <div>
@@ -157,5 +157,5 @@
             </div>
         </div>
     </div>
-</main>
+</div>
 @endsection

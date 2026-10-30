@@ -1,82 +1,86 @@
 @extends('layouts.app')
 
+@section('page-title', 'Tentang Kami')
+
 @section('content')
-<div class="px-4 xl:px-6 w-full max-w-[1200px] mx-auto py-8 lg:py-12 flex-1">
-    
-    <!-- Hero Section -->
-    <div class="mb-10 md:mb-16 text-center">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-green-800 dark:text-green-400 tracking-tight mb-4">Tentang AgriCare</h1>
-        <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Mitra terbaik Anda dalam mencapai pertanian yang cerdas, efisien, dan berkelanjutan.
+<div class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8 flex flex-col gap-6 sm:gap-8">
+
+    {{-- Hero --}}
+    <section class="relative overflow-hidden rounded-3xl border border-[#A5D6A7]/45 bg-[#EBF7EE] p-6 sm:p-10 lg:p-12">
+        <img src="{{ asset('assets/latar-belakang-lanskap-pedesaan-gradien_52683-126752.jpg') }}" alt="" aria-hidden="true"
+             class="absolute inset-0 w-full h-full object-cover select-none pointer-events-none" style="object-position: center 60%;">
+        <div aria-hidden="true" class="absolute inset-0 pointer-events-none"
+             style="background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(246,252,247,0.82) 60%, rgba(246,252,247,0.4) 100%);"></div>
+        <div class="relative z-10 max-w-2xl">
+            <p class="text-[11px] sm:text-xs uppercase tracking-widest font-bold text-[#1B5E20] mb-2">Tentang TANIA</p>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F2E15] leading-tight">
+                Mitra Anda menuju pertanian yang cerdas dan berkelanjutan.
+            </h1>
+            <p class="mt-3 text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
+                Platform manajemen pertanian berbasis AI dan data cuaca real-time untuk membantu petani merencanakan, memantau, dan mengoptimalkan hasil panen.
+            </p>
+        </div>
+    </section>
+
+    {{-- Visi & Misi --}}
+    <section class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8 lg:p-10">
+        <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-2xl">visibility</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Visi &amp; Misi Kami</h2>
+        </div>
+        <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <strong class="text-slate-900">TANIA</strong> hadir untuk memodernisasi sektor pertanian Indonesia melalui kecerdasan buatan (AI) dan data real-time. Setiap petani berhak mendapatkan informasi yang akurat dan tepat waktu untuk mengoptimalkan hasil panennya.
         </p>
-    </div>
+        <p class="mt-5 mb-3 text-sm font-bold text-slate-900">Misi kami:</p>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            @foreach([
+                ['partly_cloudy_day', 'Prediksi cuaca akurat untuk setiap jengkal lahan pertanian.'],
+                ['calendar_month', 'Rekomendasi jadwal tanam berbasis data iklim dan kondisi lahan.'],
+                ['pest_control', 'Deteksi dini serangan hama dan penyakit tanaman dengan AI.'],
+                ['trending_up', 'Informasi harga pasar terkini agar petani meraih keuntungan maksimal.'],
+            ] as [$icon, $text])
+            <li class="flex items-start gap-3 rounded-2xl bg-[#F6FAF6] border border-[#E8F5E9] p-4">
+                <span class="material-symbols-outlined text-[#1B5E20] text-xl mt-0.5">{{ $icon }}</span>
+                <span class="text-sm text-slate-700 leading-relaxed">{{ $text }}</span>
+            </li>
+            @endforeach
+        </ul>
+    </section>
 
-    <!-- Content Sections -->
-    <div class="space-y-12">
-        
-        <!-- Visi & Misi -->
-        <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 shadow-sm border border-green-100 dark:border-slate-700">
-            <div class="flex items-center gap-4 mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
-                    <span class="material-symbols-outlined text-[28px]">visibility</span>
-                </div>
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">Visi & Misi Kami</h2>
+    {{-- Keunggulan --}}
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8">
+            <div class="w-11 h-11 rounded-xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-2xl">smart_toy</span>
             </div>
-            <div class="prose prose-lg prose-green dark:prose-invert max-w-none text-slate-600 dark:text-slate-300">
-                <p>
-                    <strong>AgriCare</strong> hadir dengan visi untuk memodernisasi sektor pertanian Indonesia melalui pemanfaatan teknologi kecerdasan buatan (AI) dan data real-time. Kami percaya bahwa setiap petani berhak mendapatkan akses informasi yang akurat dan tepat waktu untuk mengoptimalkan hasil panen mereka.
-                </p>
-                <p>
-                    Misi kami adalah:
-                </p>
-                <ul class="space-y-2 mt-4 list-disc pl-6">
-                    <li>Menyediakan prediksi cuaca terakurat untuk setiap jengkal lahan pertanian.</li>
-                    <li>Memberikan rekomendasi jadwal tanam berbasis data iklim dan kondisi tanah.</li>
-                    <li>Memfasilitasi deteksi dini terhadap serangan hama dan penyakit tanaman menggunakan AI.</li>
-                    <li>Menyajikan informasi harga pasar terkini untuk membantu petani mendapatkan keuntungan maksimal.</li>
-                </ul>
-            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Teknologi AI Terdepan</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+                Algoritma cerdas menganalisis berbagai data untuk memberikan rekomendasi spesifik yang disesuaikan dengan lahan Anda.
+            </p>
         </div>
-
-        <!-- Keunggulan -->
-        <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-            <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-sm border border-green-100 dark:border-slate-700">
-                <div class="w-12 h-12 rounded-2xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 mb-6">
-                    <span class="material-symbols-outlined text-[28px]">smart_toy</span>
-                </div>
-                <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Teknologi AI Terdepan</h3>
-                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Didukung oleh algoritma cerdas yang mampu menganalisis ribuan data point untuk memberikan rekomendasi spesifik yang disesuaikan dengan lahan Anda.
-                </p>
+        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-8">
+            <div class="w-11 h-11 rounded-xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-2xl">eco</span>
             </div>
-            
-            <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-sm border border-green-100 dark:border-slate-700">
-                <div class="w-12 h-12 rounded-2xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 mb-6">
-                    <span class="material-symbols-outlined text-[28px]">eco</span>
-                </div>
-                <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Berpusat pada Petani</h3>
-                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Setiap fitur yang kami bangun didesain dengan mempertimbangkan kemudahan penggunaan, bahkan untuk mereka yang baru mengenal teknologi digital.
-                </p>
-            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Berpusat pada Petani</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+                Setiap fitur dirancang agar mudah digunakan, bahkan oleh mereka yang baru mengenal teknologi digital.
+            </p>
         </div>
+    </section>
 
-        <!-- Tim Kami -->
-        <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-slate-800 dark:to-slate-800/80 rounded-3xl p-8 md:p-12 shadow-sm border border-green-100 dark:border-slate-700">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-4">Membangun Ekosistem Pertanian Modern</h2>
-                <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-                    Kami terus berinovasi dan berkolaborasi dengan berbagai pihak untuk memastikan AgriCare selalu relevan dengan kebutuhan pertanian masa depan.
-                </p>
-            </div>
-            
-            <div class="flex justify-center mt-8">
-                <a href="{{ route('dashboard') }}" class="px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-green-600/20">
-                    Mulai Gunakan AgriCare
-                </a>
-            </div>
-        </div>
-
-    </div>
+    {{-- CTA --}}
+    <section class="rounded-3xl bg-[#1B5E20] text-white p-6 sm:p-10 text-center">
+        <h2 class="text-xl sm:text-2xl font-bold mb-2">Membangun ekosistem pertanian modern</h2>
+        <p class="text-sm text-green-100/90 max-w-xl mx-auto mb-6 leading-relaxed">
+            Kami terus berinovasi agar TANIA selalu relevan dengan kebutuhan pertanian masa depan.
+        </p>
+        <a href="{{ route('dashboard') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-[#1B5E20] hover:bg-[#E8F5E9] font-bold text-xs sm:text-sm uppercase tracking-wider shadow-sm transition">
+            Mulai Gunakan TANIA
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </a>
+    </section>
 </div>
 @endsection
