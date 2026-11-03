@@ -162,23 +162,32 @@
 <body class="bg-[#F6FAF6] text-slate-800 min-h-screen font-sans flex flex-col antialiased selection:bg-[#E8F5E9] selection:text-[#1B5E20]">
     @include('layouts.navigation')
 
-    <!-- Main Content Shell (Offset for Desktop Floating Sidebar, min-w-0 prevents child grid/chart overflow) -->
+    <!-- Main Content Shell (Offset for Desktop Floating Sidebar, min-w-0 prevents child grid/chart overflow, pb-20 on mobile for Bottom App Bar) -->
     <div class="flex-1 min-w-0 lg:pl-72 flex flex-col min-h-screen transition-all duration-300">
         
-        <!-- Flush Sticky Header -->
+        <!-- Flush Sticky Header (Native App Bar Style on Mobile/Tablet, Clean Header on Desktop) -->
         <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-[#E8F5E9] shadow-xs transition-all">
-            <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-3">
+            <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-3">
                 
-                <!-- Left: Mobile/Tablet Menu Toggle & Dynamic Page Title -->
+                <!-- Left: App Brand on Mobile / Dynamic Page Title on Desktop -->
                 <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
-                    <button id="mobile-sidebar-toggle" type="button" class="lg:hidden p-2 -ml-1 rounded-xl text-slate-700 hover:bg-[#E8F5E9] hover:text-[#1B5E20] focus:outline-none shrink-0 transition" aria-label="Buka Menu">
-                        <span class="material-symbols-outlined text-2xl leading-none">menu</span>
+                    <!-- Mobile Logo Quick Brand -->
+                    <a href="{{ route('dashboard') }}" class="lg:hidden flex items-center shrink-0">
+                        <img src="{{ asset('assets/logo panjang-1.png') }}" alt="TANIA" class="h-7 w-auto object-contain">
+                    </a>
+
+                    <!-- Mobile Sheet Trigger / Menu Pill -->
+                    <button id="mobile-sidebar-toggle" type="button" class="lg:hidden p-1.5 rounded-xl text-slate-600 hover:bg-[#E8F5E9] hover:text-[#1B5E20] focus:outline-none shrink-0 transition flex items-center gap-1 text-xs font-semibold bg-slate-50 border border-slate-200/60" aria-label="Buka Menu Modul">
+                        <span class="material-symbols-outlined text-[18px] leading-none">widgets</span>
+                        <span class="hidden xs:inline">Menu</span>
                     </button>
-                    <div class="min-w-0">
+
+                    <!-- Desktop Header Info -->
+                    <div class="hidden lg:block min-w-0">
                         <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight truncate">
                             @yield('page-title', $defaultPageTitle)
                         </h1>
-                        <p class="text-xs text-slate-500 hidden sm:block mt-0.5 truncate">
+                        <p class="text-xs text-slate-500 mt-0.5 truncate">
                             {{ \Carbon\Carbon::now()->locale('id')->isoFormat('dddd, D MMMM Y') }} • Pantauan Agrikultur
                         </p>
                     </div>
@@ -186,7 +195,7 @@
 
                 <!-- Right: Global Action (+ Tambah Lahan) & Notifications -->
                 <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-                    <a href="{{ route('add_land') }}" class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-xl bg-[#1B5E20] hover:bg-[#2E7D32] text-white text-xs font-semibold transition shadow-sm">
+                    <a href="{{ route('add_land') }}" class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-[#1B5E20] hover:bg-[#2E7D32] text-white text-xs font-semibold transition shadow-sm">
                         <span class="material-symbols-outlined text-[18px] leading-none">add</span>
                         <span class="hidden sm:inline">Tambah Lahan</span>
                         <span class="sm:hidden">Lahan</span>
@@ -201,15 +210,15 @@
             </div>
         </header>
 
-        <!-- Page Content -->
-        <main class="flex-1 min-w-0 w-full flex flex-col">
+        <!-- Page Content (pb-24 on mobile/tablet so it doesn't overlap bottom navigation bar) -->
+        <main class="flex-1 min-w-0 w-full flex flex-col pb-24 lg:pb-8">
             @yield('content')
         </main>
 
         <!-- Footer -->
         @if(!request()->routeIs('tanibot'))
         <footer class="bg-white/80 border-t border-[#E8F5E9] mt-auto">
-            <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 pb-20 sm:pb-5 sm:pr-20 lg:pr-20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 text-center sm:text-left">
+            <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-5 pb-28 sm:pb-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 text-center sm:text-left">
                 <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                     <span class="material-symbols-outlined text-[#1B5E20] text-[20px]" style="font-variation-settings: 'FILL' 1;">eco</span>
                     <span class="font-bold text-slate-900">TANIA</span>
